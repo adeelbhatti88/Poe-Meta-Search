@@ -1,6 +1,7 @@
 
 import requests
 import tkinter as tk
+import operator
 
 
 def open_window():
@@ -15,26 +16,26 @@ def open_window():
 
 def main_window2():
     root = tk.Tk()
-    HEIGHT = 700
+    HEIGHT = 800
     WIDTH = 800
     canvas = tk.Canvas(root, height=HEIGHT, width=WIDTH)
     canvas.pack()  # the .pack displays it on the screen
 
     frame = tk.Frame(root, bg='blue', bd=5)
-    frame.place(relx=0.5, rely=0.1, relwidth=0.75, relheight=0.1, anchor='n')
+    frame.place(relx=0.5, rely=0.1, relwidth=0.75, relheight=0.2, anchor='n')
 
     entry = tk.Entry(frame, font=40)
-    entry.place(relwidth=0.65, relheight=1)
+    entry.place(relwidth=0.65, relheight=.5, rely = .30)
 
     # add a button
-    button = tk.Button(frame, text="Get Item Value", font=40, command=lambda: show_weaponValue(entry.get(), label))
-    button.place(relx=0.7, relheight=1, relwidth=0.3)
+    button = tk.Button(frame, text="Get Item Value", font=10, command=lambda: show_weaponValue(entry.get(), label))
+    button.place(relx=0.4, rely = 0.83, relheight=.2, relwidth=0.25)
 
     lower_frame = tk.Frame(root, bg='blue', bd=10)
-    lower_frame.place(relx=0.5, rely=0.25, relwidth=0.75, relheight=0.6, anchor='n')
+    lower_frame.place(relx=0.5, rely=0.40, relwidth=0.75, relheight=0.5, anchor='n')
 
     label = tk.Label(lower_frame)
-    label.place(relwidth=1, relheight=1)
+    label.place(relwidth=1, relheight=.5)
 
 
 
@@ -42,26 +43,30 @@ def main_window2():
 
 def main_window1():
     root = tk.Tk()
-    HEIGHT = 700
+    HEIGHT = 800
     WIDTH = 800
     canvas = tk.Canvas(root, height=HEIGHT, width=WIDTH)
     canvas.pack()  # the .pack displays it on the screen
 
     frame = tk.Frame(root, bg='blue', bd=5)
-    frame.place(relx=0.5, rely=0.1, relwidth=0.75, relheight=0.1, anchor='n')
+    frame.place(relx=0.5, rely=.1, relwidth=0.75, relheight=0.2, anchor='n')
 
     entry = tk.Entry(frame, font=40)
-    entry.place(relwidth=0.65, relheight=1)
+    entry.place(relwidth=0.65, relheight=.5, rely = .30)
 
     # add a button
     button = tk.Button(frame, text="Get Item Value", font=40, command=lambda: show_value(entry.get(), label))
-    button.place(relx=0.7, relheight=1, relwidth=0.3)
+    button.place(relx=0.4, rely = 0.83, relheight=.2, relwidth=0.25)
+    #lowest priced item button
+    button2 = tk.Button(frame, text="Get highest valued item", font=40, command=lambda: top_Currency_Item(entry.get(), label))
+    #rely is how you change the height of this button
+    button2.place(relx=.001, relheight=.2, relwidth=0.40, rely = .83)
 
     lower_frame = tk.Frame(root, bg='blue', bd=10)
-    lower_frame.place(relx=0.5, rely=0.25, relwidth=0.75, relheight=0.6, anchor='n')
+    lower_frame.place(relx=0.5, rely=0.40, relwidth=0.75, relheight=0.5, anchor='n')
 
     label = tk.Label(lower_frame)
-    label.place(relwidth=1, relheight=1)
+    label.place(relwidth=1, relheight=.5)
 
 
 
@@ -96,6 +101,10 @@ def show_value(entry, label):
     print("inside show value function!!", entry)
     print(currency.get(entry))
     label['text'] = str(currency.get(entry)) + chaosOrbs
+
+#function for displaying the highest valued item in the currency category..
+def top_Currency_Item(entry, label):
+    label['text'] = max(currency.items(), key = operator.itemgetter(1))[0]
 
 
 
