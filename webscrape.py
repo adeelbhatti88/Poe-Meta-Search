@@ -1,76 +1,74 @@
-
 import requests
 import tkinter as tk
 import operator
+from PIL import Image, ImageTk
 
 
-def open_window():
-    root = tk.Tk()
-    root.configure(bg="blue")
-    button = tk.Button(root, text="currency search", command=main_window1)
-    weaponButton = tk.Button(root, text="Weapons Search", command=main_window2)
-    button.pack()
-    weaponButton.pack()
-    root.geometry("400x400+150+150")
-    root.mainloop()
+
+
 
 def main_window2():
-    root = tk.Tk()
-    HEIGHT = 800
-    WIDTH = 800
-    canvas = tk.Canvas(root, height=HEIGHT, width=WIDTH)
-    canvas.pack()  # the .pack displays it on the screen
+    root = tk.Toplevel()
 
-    frame = tk.Frame(root, bg='blue', bd=5)
-    frame.place(relx=0.5, rely=0.1, relwidth=0.75, relheight=0.2, anchor='n')
 
-    entry = tk.Entry(frame, font=40)
-    entry.place(relwidth=0.65, relheight=.5, rely = .30)
+    root.geometry("400x400")
+    # background_image = tk.PhotoImage(file = "chest.gif")
+    background_label = tk.Label(root, bg = "tomato4")
+    background_label.place(x=0, y=0, relwidth=1, relheight=1)
+
+    # frame = tk.Frame(root)
+    # frame.place(relwidth = 1, relheight = 1)
+
+    entry = tk.Entry(root)
+    entry.place(x = 150, y = 50, width = 100)
 
     # add a button
-    button = tk.Button(frame, text="Get Item Value", font=10, command=lambda: show_weaponValue(entry.get(), label))
-    button.place(relx=0.4, rely = 0.83, relheight=.2, relwidth=0.25)
-
-    lower_frame = tk.Frame(root, bg='blue', bd=10)
-    lower_frame.place(relx=0.5, rely=0.40, relwidth=0.75, relheight=0.5, anchor='n')
-
-    label = tk.Label(lower_frame)
-    label.place(relwidth=1, relheight=.5)
+    button = tk.Button(root,text="Get Item Value", font=1, command=lambda: show_weaponValue(entry.get(), label))
+    button.place(x = 1, y = 70)
 
 
+    label = tk.Label(root,font = 200, bg="white")
+    #x and y to move screen, width and height to adjust box width and height.
+    label.place(x = 100, y = 200, width = 200, height = 200)
 
-    tk.Button(root, text="Quit", command = root.destroy).pack()
+
+
+    tk.Button(root, text="Quit", command = root.destroy).place(x= 400, y = 750)
+
+
+
 
 def main_window1():
-    root = tk.Tk()
-    HEIGHT = 800
-    WIDTH = 800
-    canvas = tk.Canvas(root, height=HEIGHT, width=WIDTH)
-    canvas.pack()  # the .pack displays it on the screen
+    root = tk.Toplevel()
 
-    frame = tk.Frame(root, bg='blue', bd=5)
-    frame.place(relx=0.5, rely=.1, relwidth=0.75, relheight=0.2, anchor='n')
 
-    entry = tk.Entry(frame, font=40)
-    entry.place(relwidth=0.65, relheight=.5, rely = .30)
+    root.geometry("400x400")
+    # background_image = tk.PhotoImage(file = "chest.gif")
+    background_label = tk.Label(root, bg = "tomato4")
+    background_label.place(x=0, y=0, relwidth=1, relheight=1)
+
+    # frame = tk.Frame(root)
+    # frame.place(relwidth = 1, relheight = 1)
+
+    entry = tk.Entry(root)
+    entry.place(x = 50, y = 50, width = 300)
 
     # add a button
-    button = tk.Button(frame, text="Get Item Value", font=40, command=lambda: show_value(entry.get(), label))
-    button.place(relx=0.4, rely = 0.83, relheight=.2, relwidth=0.25)
-    #lowest priced item button
-    button2 = tk.Button(frame, text="Get highest valued item", font=40, command=lambda: top_Currency_Item(entry.get(), label))
-    #rely is how you change the height of this button
-    button2.place(relx=.001, relheight=.2, relwidth=0.40, rely = .83)
+    button = tk.Button(root,text="Get Item Value", font=1, command=lambda: show_value(entry.get(), label))
+    button.place(x = 1, y = 70)
 
-    lower_frame = tk.Frame(root, bg='blue', bd=10)
-    lower_frame.place(relx=0.5, rely=0.40, relwidth=0.75, relheight=0.5, anchor='n')
+    button2 = tk.Button(root, text="Top Currency", font=1, command=lambda: top_Currency_Item(entry.get(), label))
+    button2.place(x=150, y=70)
 
-    label = tk.Label(lower_frame)
-    label.place(relwidth=1, relheight=.5)
+
+    label = tk.Label(root,font = 200, bg="white")
+    #x and y to move screen, width and height to adjust box width and height.
+    label.place(x = 0, y = 200, width = 400, height = 200)
 
 
 
-    tk.Button(root, text="Quit", command = root.destroy).pack()
+    tk.Button(root, text="Quit", command = root.destroy).place(x= 400, y = 750)
+
 
 
 
@@ -104,7 +102,9 @@ def show_value(entry, label):
 
 #function for displaying the highest valued item in the currency category..
 def top_Currency_Item(entry, label):
-    label['text'] = max(currency.items(), key = operator.itemgetter(1))[0]
+    chaosOrbs = ' ChaosOrbs'
+    topCurrencyItem = max(currency, key=currency.get)
+    label['text'] = max(currency.items(), key = operator.itemgetter(1))[0] + " " + str(round(currency.get(max(currency.items(), key = operator.itemgetter(1))[0]))) + chaosOrbs + "\n we in this" + "\n and another one"
 
 
 
@@ -113,6 +113,20 @@ def show_weaponValue(entry, label):
     label['text'] = str(weapons.get(entry)) + chaosOrbs
 
 
-open_window()
+root = tk.Tk()
+background_image = tk.PhotoImage(file= "chest.gif")
+
+background_label = tk.Label(root, image=background_image)
+background_label.place(x=0,y=0,relwidth=1,relheight=1)
+
+# root.configure(bg="blue")
+button = tk.Button(root, text="currency search", command=main_window1)
+weaponButton = tk.Button(root, text="Weapons Search", command=main_window2)
+button.pack()
+weaponButton.pack()
+root.geometry("400x400+350+350")
+root.mainloop()
+
+
 
 
