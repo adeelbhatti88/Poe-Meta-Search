@@ -3,10 +3,43 @@ import tkinter as tk
 import operator
 from PIL import Image, ImageTk
 
+#unique armour window
+def main_window3():
+    root = tk.Toplevel()
+
+
+    root.geometry("400x400")
+    # background_image = tk.PhotoImage(file = "chest.gif")
+    background_label = tk.Label(root, bg = "tomato4")
+    background_label.place(x=0, y=0, relwidth=1, relheight=1)
+
+    # frame = tk.Frame(root)
+    # frame.place(relwidth = 1, relheight = 1)
+
+    entry = tk.Entry(root)
+    entry.place(x = 50, y = 50, width = 300)
+
+    # add a button
+    button = tk.Button(root,text="Get Item Value", font=1, command=lambda: show_Unique_Armour_Value(entry.get(), label))
+    button.place(x = 1, y = 70)
+
+    button2 = tk.Button(root, text="Top Weapon", font=1, command=lambda: top_Weapon_Item(entry.get(), label))
+    button2.place(x=150, y=70)
+
+
+    label = tk.Label(root,font = 200, bg="white")
+    #x and y to move screen, width and height to adjust box width and height.
+    label.place(x = 100, y = 200, width = 200, height = 200)
+    label2 = tk.Label(root, font = 200, bg="white")
+    label2.place(x=45, y = 25)
+    label2['text'] = "Results will be value of 1-4 linked armours only"
 
 
 
+    tk.Button(root, text="Quit", command = root.destroy).place(x= 400, y = 750)
 
+
+#weapon window
 def main_window2():
     root = tk.Toplevel()
 
@@ -26,6 +59,9 @@ def main_window2():
     button = tk.Button(root,text="Get Item Value", font=1, command=lambda: show_weaponValue(entry.get(), label))
     button.place(x = 1, y = 70)
 
+    button2 = tk.Button(root, text="Top Weapon", font=1, command=lambda: top_Weapon_Item(entry.get(), label))
+    button2.place(x=150, y=70)
+
 
     label = tk.Label(root,font = 200, bg="white")
     #x and y to move screen, width and height to adjust box width and height.
@@ -37,7 +73,7 @@ def main_window2():
 
 
 
-
+#currency window
 def main_window1():
     root = tk.Toplevel()
 
@@ -64,6 +100,7 @@ def main_window1():
     label = tk.Label(root,font = 200, bg="white")
     #x and y to move screen, width and height to adjust box width and height.
     label.place(x = 0, y = 200, width = 400, height = 200)
+    label['text'] = "Suggested Search Items: Exalted Orb, Mirror of Kalandra"
 
 
 
@@ -74,18 +111,25 @@ def main_window1():
 
 url = 'https://poe.ninja/api/data/currencyoverview?league=Metamorph&type=Currency&language=en'
 weaponUrl = 'https://poe.ninja/api/data/itemoverview?league=Metamorph&type=UniqueWeapon&language=en'
+uniqueArmourDataUrl = "https://poe.ninja/api/data/itemoverview?league=Metamorph&type=UniqueArmour&language=en"
 
 weaponData = requests.get(weaponUrl)
+uniqueArmourData = requests.get(uniqueArmourDataUrl)
 data = requests.get(url)
 
 datajson = data.json()
 weaponJson = weaponData.json()
+uniqueArmourDataJson = uniqueArmourData.json()
 
 
 print(type(datajson))
 # print(datajson['lines'][0]['currencyTypeName'])
 weapons = {}
 currency = {}
+uniqueArmourDic = {}
+
+for val in uniqueArmourDataJson['lines']:
+    uniqueArmourDic[val['name']] = val['chaosValue']
 
 for val in datajson['lines']:
     currency[val['currencyTypeName']] = val['receive']['value']
@@ -106,7 +150,16 @@ def top_Currency_Item(entry, label):
     topCurrencyItem = max(currency, key=currency.get)
     label['text'] = max(currency.items(), key = operator.itemgetter(1))[0] + " " + str(round(currency.get(max(currency.items(), key = operator.itemgetter(1))[0]))) + chaosOrbs + "\n we in this" + "\n and another one"
 
+#function for displaying the highest valued item in the weapon's category.
+def top_Weapon_Item(entry, label):
+    chaosOrbs = ' ChaosOrbs'
+    topCurrencyItem = max(weapons, key=weapons.get)
+    label['text'] = max(weapons.items(), key = operator.itemgetter(1))[0] + " " + str(round(weapons.get(max(weapons.items(), key = operator.itemgetter(1))[0]))) + chaosOrbs + "\n we in this" + "\n and another one"
 
+
+def show_Unique_Armour_Value(entry, label):
+    chaosOrbs = " ChaosOrbs"
+    label['text'] = str(uniqueArmourDic.get(entry)) + chaosOrbs
 
 def show_weaponValue(entry, label):
     chaosOrbs = ' ChaosOrbs'
@@ -122,8 +175,10 @@ background_label.place(x=0,y=0,relwidth=1,relheight=1)
 # root.configure(bg="blue")
 button = tk.Button(root, text="currency search", command=main_window1)
 weaponButton = tk.Button(root, text="Weapons Search", command=main_window2)
+armourButton = tk.Button(root, text="Unique Armour Search", command=main_window3)
 button.pack()
 weaponButton.pack()
+armourButton.pack()
 root.geometry("400x400+350+350")
 root.mainloop()
 
