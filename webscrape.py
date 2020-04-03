@@ -121,21 +121,24 @@ def main_window1():
     # frame = tk.Frame(root)
     # frame.place(relwidth = 1, relheight = 1)
 
-    entry = tk.Entry(root)
-    entry.place(x = 50, y = 50, width = 300)
+    entry = tk.Entry(root, font=("Calibri 24"))
+    entry.place(x = 50, y = 50, width = 300, height = 50)
+    #user input testing
+    reg = root.register(validateInput)
+    entry.config(validate="key",validatecommand=(reg, '%P'))
 
     # add a button
     button = tk.Button(root,text="Get Item Value", font=1, command=lambda: show_value(entry.get(), label))
-    button.place(x = 1, y = 70)
+    button.place(x = 1, y = 100, height = 50)
 
     button2 = tk.Button(root, text="Top Currency", font=1, command=lambda: top_Currency_Item(entry.get(), label))
-    button2.place(x=150, y=70)
+    button2.place(x=150, y=100, height = 50)
 
 
     label = tk.Label(root,font = 200, bg="white")
     #x and y to move screen, width and height to adjust box width and height.
     label.place(x = 0, y = 200, width = 400, height = 200)
-    label['text'] = "Suggested Search Items: Exalted Orb, Mirror of Kalandra"
+    label['text'] = "Suggested Search Items:\n Exalted Orb\n Mirror of Kalandra"
 
 
 
@@ -149,6 +152,15 @@ def aboutButtonWindow():
     message.pack()
 
     tk.Button(root, text="Quit", command=root.destroy).place(x=175, y=375)
+
+#input validation function
+def validateInput(input):
+    if input.isnumeric():
+        return False
+    else:
+        return True
+
+
 
 
 
