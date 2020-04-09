@@ -16,23 +16,23 @@ def main_window4():
     # frame = tk.Frame(root)
     # frame.place(relwidth = 1, relheight = 1)
 
-    entry = tk.Entry(root)
-    entry.place(x = 50, y = 50, width = 300)
+    entry = tk.Entry(root, font=("Calibri 24"))
+    entry.place(x = 50, y = 50, width = 300, height = 50)
 
     # add a button
     button = tk.Button(root,text="Get Item Value", font=1, command=lambda: show_Unique_Armour_Six_Lilnk_Value(entry.get(), label))
-    button.place(x = 1, y = 70)
+    button.place(x = 1, y = 100, height = 50)
 
-    button2 = tk.Button(root, text="Top Weapon", font=1, command=lambda: top_Weapon_Item(entry.get(), label))
-    button2.place(x=150, y=70)
+    button2 = tk.Button(root, text="Top 6-Link Armour", font=1, command=lambda: top_6LinkArmour_Item(entry.get(), label))
+    button2.place(x=150, y=100, height = 50)
 
 
     label = tk.Label(root,font = 200, bg="white")
     #x and y to move screen, width and height to adjust box width and height.
-    label.place(x = 100, y = 200, width = 200, height = 200)
-    label2 = tk.Label(root, font = 200, bg="white")
-    label2.place(x=45, y = 25)
-    label2['text'] = "Results will be value of 1-4 linked armours only"
+    label.place(x = 0, y = 200, width = 400, height = 200)
+    # label2 = tk.Label(root, font = 200, bg="white")
+    # label2.place(x=45, y = 25)
+    # label2['text'] = "Results will be value of 1-4 linked armours only"
 
 
 
@@ -51,23 +51,23 @@ def main_window3():
     # frame = tk.Frame(root)
     # frame.place(relwidth = 1, relheight = 1)
 
-    entry = tk.Entry(root)
-    entry.place(x = 50, y = 50, width = 300)
+    entry = tk.Entry(root, font=("Calibri 24"))
+    entry.place(x = 50, y = 50, width = 300, height = 50)
 
     # add a button
     button = tk.Button(root,text="Get Item Value", font=1, command=lambda: show_Unique_Armour_Value(entry.get(), label))
-    button.place(x = 1, y = 70)
+    button.place(x = 1, y = 100, height = 50)
 
-    button2 = tk.Button(root, text="Top Weapon", font=1, command=lambda: top_Weapon_Item(entry.get(), label))
-    button2.place(x=150, y=70)
+    button2 = tk.Button(root, text="Top Armour", font=1, command=lambda: top_Armour_Item(entry.get(), label))
+    button2.place(x=150, y=100, height = 50)
 
 
     label = tk.Label(root,font = 200, bg="white")
     #x and y to move screen, width and height to adjust box width and height.
-    label.place(x = 100, y = 200, width = 200, height = 200)
-    label2 = tk.Label(root, font = 200, bg="white")
-    label2.place(x=45, y = 25)
-    label2['text'] = "Results will be value of 1-4 linked armours only"
+    label.place(x = 0, y = 200, width = 400, height = 200)
+
+
+
 
 
 
@@ -87,20 +87,20 @@ def main_window2():
     # frame = tk.Frame(root)
     # frame.place(relwidth = 1, relheight = 1)
 
-    entry = tk.Entry(root)
-    entry.place(x = 50, y = 50, width = 300)
+    entry = tk.Entry(root, font=("Calibri 24"))
+    entry.place(x = 50, y = 50, width = 300, height = 50)
 
     # add a button
     button = tk.Button(root,text="Get Item Value", font=1, command=lambda: show_weaponValue(entry.get(), label))
-    button.place(x = 1, y = 70)
+    button.place(x = 1, y = 100, height = 50)
 
     button2 = tk.Button(root, text="Top Weapon", font=1, command=lambda: top_Weapon_Item(entry.get(), label))
-    button2.place(x=150, y=70)
+    button2.place(x=150, y=100, height = 50)
 
 
     label = tk.Label(root,font = 200, bg="white")
     #x and y to move screen, width and height to adjust box width and height.
-    label.place(x = 100, y = 200, width = 200, height = 200)
+    label.place(x = 0, y = 200, width = 400, height = 200)
 
 
 
@@ -162,10 +162,6 @@ def validateInput(input):
 
 
 
-
-
-
-
 url = 'https://poe.ninja/api/data/currencyoverview?league=Delirium&type=Currency&language=en'
 weaponUrl = 'https://poe.ninja/api/data/itemoverview?league=Delirium&type=UniqueWeapon&language=en'
 uniqueArmourDataUrl = "https://poe.ninja/api/data/itemoverview?league=Delirium&type=UniqueArmour&language=en"
@@ -211,13 +207,23 @@ def show_value(entry, label):
 def top_Currency_Item(entry, label):
     chaosOrbs = ' ChaosOrbs'
     topCurrencyItem = max(currency, key=currency.get)
-    label['text'] = max(currency.items(), key = operator.itemgetter(1))[0] + " " + str(round(currency.get(max(currency.items(), key = operator.itemgetter(1))[0]))) + chaosOrbs + "\n we in this" + "\n and another one"
+    label['text'] = max(currency.items(), key = operator.itemgetter(1))[0] + " " + str(round(currency.get(max(currency.items(), key = operator.itemgetter(1))[0]))) + chaosOrbs
 
 #function for displaying the highest valued item in the weapon's category.
 def top_Weapon_Item(entry, label):
     chaosOrbs = ' ChaosOrbs'
     topCurrencyItem = max(weapons, key=weapons.get)
-    label['text'] = max(weapons.items(), key = operator.itemgetter(1))[0] + " " + str(round(weapons.get(max(weapons.items(), key = operator.itemgetter(1))[0]))) + chaosOrbs + "\n we in this" + "\n and another one"
+    label['text'] = max(weapons.items(), key = operator.itemgetter(1))[0] + " " + str(round(weapons.get(max(weapons.items(), key = operator.itemgetter(1))[0]))) + chaosOrbs
+
+def top_Armour_Item(entry, label):
+    chaosOrbs = ' ChaosOrbs'
+    topCurrencyItem = max(uniqueArmourDic, key=uniqueArmourDic.get)
+    label['text'] = max(uniqueArmourDic.items(), key = operator.itemgetter(1))[0] + " " + str(round(uniqueArmourDic.get(max(uniqueArmourDic.items(), key = operator.itemgetter(1))[0]))) + chaosOrbs
+
+def top_6LinkArmour_Item(entry, label):
+    chaosOrbs = ' ChaosOrbs'
+    topCurrencyItem = max(uniqueArmourSixLinkDic, key=uniqueArmourSixLinkDic.get)
+    label['text'] = max(uniqueArmourSixLinkDic.items(), key = operator.itemgetter(1))[0] + " " + str(round(uniqueArmourSixLinkDic.get(max(uniqueArmourSixLinkDic.items(), key = operator.itemgetter(1))[0]))) + chaosOrbs
 
 
 def show_Unique_Armour_Value(entry, label):
@@ -242,7 +248,7 @@ background_label.place(x=0,y=0,relwidth=1,relheight=1)
 # root.configure(bg="blue")
 button = tk.Button(root, text="currency search", command=main_window1)
 weaponButton = tk.Button(root, text="Weapons Search", command=main_window2)
-armourButton = tk.Button(root, text="Unique Armour Search", command=main_window3)
+armourButton = tk.Button(root, text="Unique Armour Search (1-4 Links)", command=main_window3)
 sixLinkedArmour = tk.Button(root, text="Six Linked Armour Search", command=main_window4)
 aboutButton = tk.Button(root, text="About", command=aboutButtonWindow)
 button.pack()
