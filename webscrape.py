@@ -3,6 +3,39 @@ import tkinter as tk
 import operator
 from PIL import Image, ImageTk
 
+#uniqueJewels window
+def main_window5():
+    root = tk.Toplevel()
+
+
+    root.geometry("400x400")
+    # background_image = tk.PhotoImage(file = "chest.gif")
+    background_label = tk.Label(root, bg = "tomato4")
+    background_label.place(x=0, y=0, relwidth=1, relheight=1)
+
+    # frame = tk.Frame(root)
+    # frame.place(relwidth = 1, relheight = 1)
+
+    entry = tk.Entry(root, font=("Calibri 24"))
+    entry.place(x = 50, y = 50, width = 300, height = 50)
+
+    # add a button
+    button = tk.Button(root,text="Get Item Value", font=1, command=lambda: show_uniqueJewelValue(entry.get(), label))
+    button.place(x = 1, y = 100, height = 50)
+
+    button2 = tk.Button(root, text="Top Unique Jewel", font=1, command=lambda: top_Unique_Jewel_Item(entry.get(), label))
+    button2.place(x=150, y=100, height = 50)
+
+
+    label = tk.Label(root,font = 200, bg="white")
+    #x and y to move screen, width and height to adjust box width and height.
+    label.place(x = 0, y = 200, width = 400, height = 200)
+
+
+
+    tk.Button(root, text="Quit", command = root.destroy).place(x=175, y=375)
+
+
 #unique armour six link armour window
 def main_window4():
     root = tk.Toplevel()
@@ -165,6 +198,9 @@ def validateInput(input):
 url = 'https://poe.ninja/api/data/currencyoverview?league=Delirium&type=Currency&language=en'
 weaponUrl = 'https://poe.ninja/api/data/itemoverview?league=Delirium&type=UniqueWeapon&language=en'
 uniqueArmourDataUrl = "https://poe.ninja/api/data/itemoverview?league=Delirium&type=UniqueArmour&language=en"
+uniqueJewelsUrl = 'https://poe.ninja/api/data/itemoverview?league=Delirium&type=UniqueJewel&language=en'
+
+uniqueJewelData = requests.get(uniqueJewelsUrl)
 
 weaponData = requests.get(weaponUrl)
 uniqueArmourData = requests.get(uniqueArmourDataUrl)
@@ -173,6 +209,7 @@ data = requests.get(url)
 datajson = data.json()
 weaponJson = weaponData.json()
 uniqueArmourDataJson = uniqueArmourData.json()
+uniqueJewelsDataJson = uniqueJewelData.json()
 
 
 print(type(datajson))
@@ -181,6 +218,10 @@ weapons = {}
 currency = {}
 uniqueArmourDic = {}
 uniqueArmourSixLinkDic = {}
+uniqueJewelsDic = {}
+
+for val in uniqueJewelsDataJson['lines']:
+    uniqueJewelsDic[val['name']] = val['chaosValue']
 
 for val in uniqueArmourDataJson['lines']:
     #if  statement for isolating six links
@@ -196,7 +237,7 @@ for val in datajson['lines']:
 for val in weaponJson['lines']:
     weapons[val['name']] = val['chaosValue']
 
-print(currency)
+print(uniqueJewelsDic)
 def show_value(entry, label):
     chaosOrbs = ' ChaosOrbs'
     print("inside show value function!!", entry)
@@ -225,6 +266,11 @@ def top_6LinkArmour_Item(entry, label):
     topCurrencyItem = max(uniqueArmourSixLinkDic, key=uniqueArmourSixLinkDic.get)
     label['text'] = max(uniqueArmourSixLinkDic.items(), key = operator.itemgetter(1))[0] + " " + str(round(uniqueArmourSixLinkDic.get(max(uniqueArmourSixLinkDic.items(), key = operator.itemgetter(1))[0]))) + chaosOrbs
 
+def top_Unique_Jewel_Item(entry, label):
+    chaosOrbs = ' ChaosOrbs'
+    topCurrencyItem = max(uniqueJewelsDic, key=uniqueJewelsDic.get)
+    label['text'] = max(uniqueJewelsDic.items(), key = operator.itemgetter(1))[0] + " " + str(round(uniqueJewelsDic.get(max(uniqueJewelsDic.items(), key = operator.itemgetter(1))[0]))) + chaosOrbs
+
 
 def show_Unique_Armour_Value(entry, label):
     chaosOrbs = " ChaosOrbs"
@@ -238,6 +284,10 @@ def show_weaponValue(entry, label):
     chaosOrbs = ' ChaosOrbs'
     label['text'] = str(weapons.get(entry)) + chaosOrbs
 
+def show_uniqueJewelValue(entry, label):
+    chaosOrbs = ' ChaosOrbs'
+    label['text'] = str(uniqueJewelsDic.get(entry)) + chaosOrbs
+
 
 root = tk.Tk()
 background_image = tk.PhotoImage(file= "chest.gif")
@@ -250,11 +300,13 @@ button = tk.Button(root, text="currency search", command=main_window1)
 weaponButton = tk.Button(root, text="Weapons Search", command=main_window2)
 armourButton = tk.Button(root, text="Unique Armour Search (1-4 Links)", command=main_window3)
 sixLinkedArmour = tk.Button(root, text="Six Linked Armour Search", command=main_window4)
+uniqueJewels = tk.Button(root, text="uniqueJewels", command=main_window5)
 aboutButton = tk.Button(root, text="About", command=aboutButtonWindow)
 button.pack()
 weaponButton.pack()
 armourButton.pack()
 sixLinkedArmour.pack()
+uniqueJewels.pack()
 aboutButton.pack()
 root.geometry("400x400+350+350")
 root.mainloop()
