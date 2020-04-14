@@ -3,6 +3,41 @@ import tkinter as tk
 import operator
 from PIL import Image, ImageTk
 
+#incubator Window
+def main_window6():
+    root = tk.Toplevel()
+
+
+    root.geometry("400x400")
+    # background_image = tk.PhotoImage(file = "chest.gif")
+    background_label = tk.Label(root, bg = "tomato4")
+    background_label.place(x=0, y=0, relwidth=1, relheight=1)
+
+    # frame = tk.Frame(root)
+    # frame.place(relwidth = 1, relheight = 1)
+
+    entry = tk.Entry(root, font=("Calibri 24"))
+    entry.place(x = 50, y = 50, width = 300, height = 50)
+    #user input testing
+    reg = root.register(validateInput)
+    entry.config(validate="key",validatecommand=(reg, '%P'))
+
+    # add a button
+    button = tk.Button(root,text="Get Item Value", font=1, command=lambda: show_incubatorValue(entry.get(), label))
+    button.place(x = 1, y = 100, height = 50)
+
+    button2 = tk.Button(root, text="Top Incubator", font=1, command=lambda: top_Incubator_Item(entry.get(), label))
+    button2.place(x=150, y=100, height = 50)
+
+
+    label = tk.Label(root,font = 200, bg="white")
+    #x and y to move screen, width and height to adjust box width and height.
+    label.place(x = 0, y = 200, width = 400, height = 200)
+    label['text'] = "Suggested Search Items:\n Exalted Orb\n Mirror of Kalandra"
+
+
+
+    tk.Button(root, text="Quit", command = root.destroy).place(x=175, y=375)
 #uniqueJewels window
 def main_window5():
     root = tk.Toplevel()
@@ -199,13 +234,15 @@ url = 'https://poe.ninja/api/data/currencyoverview?league=Delirium&type=Currency
 weaponUrl = 'https://poe.ninja/api/data/itemoverview?league=Delirium&type=UniqueWeapon&language=en'
 uniqueArmourDataUrl = "https://poe.ninja/api/data/itemoverview?league=Delirium&type=UniqueArmour&language=en"
 uniqueJewelsUrl = 'https://poe.ninja/api/data/itemoverview?league=Delirium&type=UniqueJewel&language=en'
+incubatorUrl = 'https://poe.ninja/api/data/itemoverview?league=Delirium&type=Incubator&language=en'
 
+incubatorData = requests.get(incubatorUrl)
 uniqueJewelData = requests.get(uniqueJewelsUrl)
-
 weaponData = requests.get(weaponUrl)
 uniqueArmourData = requests.get(uniqueArmourDataUrl)
 data = requests.get(url)
 
+incubatorDataJson = incubatorData.json()
 datajson = data.json()
 weaponJson = weaponData.json()
 uniqueArmourDataJson = uniqueArmourData.json()
@@ -219,6 +256,11 @@ currency = {}
 uniqueArmourDic = {}
 uniqueArmourSixLinkDic = {}
 uniqueJewelsDic = {}
+incubatorDic = {}
+
+for val in incubatorDataJson['lines']:
+    if val['count'] > 1:
+        incubatorDic[val['name']] = val['chaosValue']
 
 for val in uniqueJewelsDataJson['lines']:
     uniqueJewelsDic[val['name']] = val['chaosValue']
@@ -271,6 +313,10 @@ def top_Unique_Jewel_Item(entry, label):
     topCurrencyItem = max(uniqueJewelsDic, key=uniqueJewelsDic.get)
     label['text'] = max(uniqueJewelsDic.items(), key = operator.itemgetter(1))[0] + " " + str(round(uniqueJewelsDic.get(max(uniqueJewelsDic.items(), key = operator.itemgetter(1))[0]))) + chaosOrbs
 
+def top_Incubator_Item(entry, label):
+    chaosOrbs = ' ChaosOrbs'
+    topCurrencyItem = max(incubatorDic, key=incubatorDic.get)
+    label['text'] = max(incubatorDic.items(), key = operator.itemgetter(1))[0] + " " + str(round(incubatorDic.get(max(incubatorDic.items(), key = operator.itemgetter(1))[0]))) + chaosOrbs
 
 def show_Unique_Armour_Value(entry, label):
     chaosOrbs = " ChaosOrbs"
@@ -288,6 +334,10 @@ def show_uniqueJewelValue(entry, label):
     chaosOrbs = ' ChaosOrbs'
     label['text'] = str(uniqueJewelsDic.get(entry)) + chaosOrbs
 
+def show_incubatorValue(entry, label):
+    chaosOrbs = ' ChaosOrbs'
+    label['text'] = str(incubatorDic.get(entry)) + chaosOrbs
+
 
 root = tk.Tk()
 background_image = tk.PhotoImage(file= "chest.gif")
@@ -301,12 +351,14 @@ weaponButton = tk.Button(root, text="Weapons Search", command=main_window2)
 armourButton = tk.Button(root, text="Unique Armour Search (1-4 Links)", command=main_window3)
 sixLinkedArmour = tk.Button(root, text="Six Linked Armour Search", command=main_window4)
 uniqueJewels = tk.Button(root, text="uniqueJewels", command=main_window5)
+incubatorButton = tk.Button(root, text = "Incubators", command = main_window6)
 aboutButton = tk.Button(root, text="About", command=aboutButtonWindow)
 button.pack()
 weaponButton.pack()
 armourButton.pack()
 sixLinkedArmour.pack()
 uniqueJewels.pack()
+incubatorButton.pack()
 aboutButton.pack()
 root.geometry("400x400+350+350")
 root.mainloop()
