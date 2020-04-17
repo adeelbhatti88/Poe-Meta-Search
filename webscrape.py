@@ -3,6 +3,40 @@ import tkinter as tk
 import operator
 from PIL import Image, ImageTk
 
+#scarab search window
+def main_window7():
+    root = tk.Toplevel()
+
+    root.geometry("400x400")
+    # background_image = tk.PhotoImage(file = "chest.gif")
+    background_label = tk.Label(root, bg = "tomato4")
+    background_label.place(x=0, y=0, relwidth=1, relheight=1)
+
+    # frame = tk.Frame(root)
+    # frame.place(relwidth = 1, relheight = 1)
+
+    entry = tk.Entry(root, font=("Calibri 24"))
+    entry.place(x = 50, y = 50, width = 300, height = 50)
+    #user input testing
+    reg = root.register(validateInput)
+    entry.config(validate="key",validatecommand=(reg, '%P'))
+
+    # add a button
+    button = tk.Button(root,text="Get Item Value", font=1, command=lambda: show_scarabValue(entry.get(), label))
+    button.place(x = 1, y = 100, height = 50)
+
+    button2 = tk.Button(root, text="Top Scarab", font=1, command=lambda: top_Scarab_Item(entry.get(), label))
+    button2.place(x=150, y=100, height = 50)
+
+
+    label = tk.Label(root,font = 200, bg="white")
+    #x and y to move screen, width and height to adjust box width and height.
+    label.place(x = 0, y = 200, width = 400, height = 200)
+    label['text'] = "Suggested Search Items:\n Exalted Orb\n Mirror of Kalandra"
+
+
+
+    tk.Button(root, text="Quit", command = root.destroy).place(x=175, y=375)
 #incubator Window
 def main_window6():
     root = tk.Toplevel()
@@ -235,13 +269,16 @@ weaponUrl = 'https://poe.ninja/api/data/itemoverview?league=Delirium&type=Unique
 uniqueArmourDataUrl = "https://poe.ninja/api/data/itemoverview?league=Delirium&type=UniqueArmour&language=en"
 uniqueJewelsUrl = 'https://poe.ninja/api/data/itemoverview?league=Delirium&type=UniqueJewel&language=en'
 incubatorUrl = 'https://poe.ninja/api/data/itemoverview?league=Delirium&type=Incubator&language=en'
+scarabUrl = 'https://poe.ninja/api/data/itemoverview?league=Delirium&type=Scarab&language=en'
 
+scarabData = requests.get(scarabUrl)
 incubatorData = requests.get(incubatorUrl)
 uniqueJewelData = requests.get(uniqueJewelsUrl)
 weaponData = requests.get(weaponUrl)
 uniqueArmourData = requests.get(uniqueArmourDataUrl)
 data = requests.get(url)
 
+scarabDataJson = scarabData.json()
 incubatorDataJson = incubatorData.json()
 datajson = data.json()
 weaponJson = weaponData.json()
@@ -257,6 +294,11 @@ uniqueArmourDic = {}
 uniqueArmourSixLinkDic = {}
 uniqueJewelsDic = {}
 incubatorDic = {}
+scarabPriceDic = {}
+
+for val in scarabDataJson['lines']:
+    if val['count'] > 1:
+        scarabPriceDic[val['name']] = val['chaosValue']
 
 for val in incubatorDataJson['lines']:
     if val['count'] > 1:
@@ -318,6 +360,11 @@ def top_Incubator_Item(entry, label):
     topCurrencyItem = max(incubatorDic, key=incubatorDic.get)
     label['text'] = max(incubatorDic.items(), key = operator.itemgetter(1))[0] + " " + str(round(incubatorDic.get(max(incubatorDic.items(), key = operator.itemgetter(1))[0]))) + chaosOrbs
 
+def top_Scarab_Item(entry, label):
+    chaosOrbs = ' ChaosOrbs'
+    topCurrencyItem = max(scarabPriceDic, key=scarabPriceDic.get)
+    label['text'] = max(scarabPriceDic.items(), key = operator.itemgetter(1))[0] + " " + str(round(scarabPriceDic.get(max(scarabPriceDic.items(), key = operator.itemgetter(1))[0]))) + chaosOrbs
+
 def show_Unique_Armour_Value(entry, label):
     chaosOrbs = " ChaosOrbs"
     label['text'] = str(uniqueArmourDic.get(entry)) + chaosOrbs
@@ -338,12 +385,16 @@ def show_incubatorValue(entry, label):
     chaosOrbs = ' ChaosOrbs'
     label['text'] = str(incubatorDic.get(entry)) + chaosOrbs
 
+def show_scarabValue(entry, label):
+    chaosOrbs = ' ChaosOrbs'
+    label['text'] = str(scarabPriceDic.get(entry)) + chaosOrbs
+
 
 root = tk.Tk()
 background_image = tk.PhotoImage(file= "chest.gif")
-
 background_label = tk.Label(root, image=background_image)
 background_label.place(x=0,y=0,relwidth=1,relheight=1)
+root.title("Currency Search Program")
 
 # root.configure(bg="blue")
 button = tk.Button(root, text="currency search", command=main_window1)
@@ -352,6 +403,7 @@ armourButton = tk.Button(root, text="Unique Armour Search (1-4 Links)", command=
 sixLinkedArmour = tk.Button(root, text="Six Linked Armour Search", command=main_window4)
 uniqueJewels = tk.Button(root, text="uniqueJewels", command=main_window5)
 incubatorButton = tk.Button(root, text = "Incubators", command = main_window6)
+scarabButton = tk.Button(root, text = "Scarabs", command = main_window7)
 aboutButton = tk.Button(root, text="About", command=aboutButtonWindow)
 button.pack()
 weaponButton.pack()
@@ -359,6 +411,7 @@ armourButton.pack()
 sixLinkedArmour.pack()
 uniqueJewels.pack()
 incubatorButton.pack()
+scarabButton.pack()
 aboutButton.pack()
 root.geometry("400x400+350+350")
 root.mainloop()
