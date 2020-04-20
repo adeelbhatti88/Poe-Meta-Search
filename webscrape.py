@@ -3,6 +3,40 @@ import tkinter as tk
 import operator
 from PIL import Image, ImageTk
 
+#Unique Acessories search window
+def main_window9():
+    root = tk.Toplevel()
+    root.title("Fossil Search")
+    root.geometry("400x400")
+    # background_image = tk.PhotoImage(file = "chest.gif")
+    background_label = tk.Label(root, bg = "tomato4")
+    background_label.place(x=0, y=0, relwidth=1, relheight=1)
+    # frame = tk.Frame(root)
+    # frame.place(relwidth = 1, relheight = 1)
+    entry = tk.Entry(root, font=("Calibri 24"))
+    entry.place(x = 50, y = 50, width = 300, height = 50)
+    #user input testing
+    reg = root.register(validateInput)
+    entry.config(validate="key",validatecommand=(reg, '%P'))
+
+    # add a button
+    button = tk.Button(root,text="Get Item Value", font=1, command=lambda: show_unique_acessories_Value(entry.get(), label))
+    button.place(x = 1, y = 100, height = 50)
+
+    button2 = tk.Button(root, text="Top Acessory", font=1, command=lambda: top_Unique_Accessories_Item(entry.get(), label))
+    button2.place(x=150, y=100, height = 50)
+
+
+    label = tk.Label(root,font = 200, bg="white")
+    #x and y to move screen, width and height to adjust box width and height.
+    label.place(x = 0, y = 200, width = 400, height = 200)
+    label['text'] = "Suggested Search Items:\n Exalted Orb\n Mirror of Kalandra"
+
+
+
+    tk.Button(root, text="Quit", command = root.destroy).place(x=175, y=375)
+
+
 #fossil search window
 def main_window8():
     root = tk.Toplevel()
@@ -305,6 +339,7 @@ uniqueJewelsUrl = 'https://poe.ninja/api/data/itemoverview?league=Delirium&type=
 incubatorUrl = 'https://poe.ninja/api/data/itemoverview?league=Delirium&type=Incubator&language=en'
 scarabUrl = 'https://poe.ninja/api/data/itemoverview?league=Delirium&type=Scarab&language=en'
 fossilUrl = 'https://poe.ninja/api/data/itemoverview?league=Delirium&type=Fossil&language=en'
+uniqueAccessoriesUrl = 'https://poe.ninja/api/data/itemoverview?league=Delirium&type=UniqueAccessory&language=en'
 
 fossilData = requests.get(fossilUrl)
 scarabData = requests.get(scarabUrl)
@@ -312,6 +347,7 @@ incubatorData = requests.get(incubatorUrl)
 uniqueJewelData = requests.get(uniqueJewelsUrl)
 weaponData = requests.get(weaponUrl)
 uniqueArmourData = requests.get(uniqueArmourDataUrl)
+uniqueAccessoriesData = requests.get(uniqueAccessoriesUrl)
 data = requests.get(url)
 
 fossilDataJson = fossilData.json()
@@ -321,6 +357,7 @@ datajson = data.json()
 weaponJson = weaponData.json()
 uniqueArmourDataJson = uniqueArmourData.json()
 uniqueJewelsDataJson = uniqueJewelData.json()
+uniqueAccessoriesDataJson = uniqueAccessoriesData.json()
 
 
 print(type(datajson))
@@ -333,6 +370,11 @@ uniqueJewelsDic = {}
 incubatorDic = {}
 scarabPriceDic = {}
 fossilPriceDic = {}
+uniqueAccessoriesPriceDic = {}
+
+for val in uniqueAccessoriesDataJson['lines']:
+    if val['count'] > 1:
+        uniqueAccessoriesPriceDic[val['name']] = val['chaosValue']
 
 for val in fossilDataJson['lines']:
     if val['count'] > 1:
@@ -412,6 +454,11 @@ def top_Fossil_Item(entry, label):
     topCurrencyItem = max(fossilPriceDic, key=fossilPriceDic.get)
     label['text'] = max(fossilPriceDic.items(), key = operator.itemgetter(1))[0] + " " + str(round(fossilPriceDic.get(max(fossilPriceDic.items(), key = operator.itemgetter(1))[0]))) + chaosOrbs
 
+def top_Unique_Accessories_Item(entry, label):
+    chaosOrbs = ' ChaosOrbs'
+    topCurrencyItem = max(uniqueAccessoriesPriceDic, key=uniqueAccessoriesPriceDic.get)
+    label['text'] = max(uniqueAccessoriesPriceDic.items(), key = operator.itemgetter(1))[0] + " " + str(round(uniqueAccessoriesPriceDic.get(max(uniqueAccessoriesPriceDic.items(), key = operator.itemgetter(1))[0]))) + chaosOrbs
+
 
 
 def show_Unique_Armour_Value(entry, label):
@@ -442,6 +489,10 @@ def show_fossilValue(entry, label):
     chaosOrbs = ' ChaosOrbs'
     label['text'] = str(fossilPriceDic.get(entry)) + chaosOrbs
 
+def show_unique_acessories_Value(entry, label):
+    chaosOrbs = ' ChaosOrbs'
+    label['text'] = str(uniqueAccessoriesPriceDic.get(entry)) + chaosOrbs
+
 
 root = tk.Tk()
 background_image = tk.PhotoImage(file= "chest.gif")
@@ -458,16 +509,25 @@ uniqueJewels = tk.Button(root, text="uniqueJewels", command=main_window5)
 incubatorButton = tk.Button(root, text = "Incubators", command = main_window6)
 scarabButton = tk.Button(root, text = "Scarabs", command = main_window7)
 fossilButton = tk.Button(root, text = "Fossils", command = main_window8)
+UniqueAccessoriesButton = tk.Button(root, text = "Unique Accessories", command = main_window9)
 aboutButton = tk.Button(root, text="About", command=aboutButtonWindow)
+
 button.pack()
+button.place(x = 1, y = 75)
 weaponButton.pack()
+weaponButton.place(x = 1, y = 120)
 armourButton.pack()
+armourButton.place(x = 1, y = 160)
 sixLinkedArmour.pack()
+sixLinkedArmour.place( x = 1, y = 200)
 uniqueJewels.pack()
+uniqueJewels.place ( x = 1, y = 245)
 incubatorButton.pack()
 scarabButton.pack()
 fossilButton.pack()
+UniqueAccessoriesButton.pack()
 aboutButton.pack()
+aboutButton.place(x = 200, y = 350)
 root.geometry("400x400+350+350")
 root.mainloop()
 
