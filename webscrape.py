@@ -3,6 +3,74 @@ import tkinter as tk
 import operator
 from PIL import Image, ImageTk
 
+def exalt_Ratio_Window():
+    root = tk.Toplevel()
+
+
+    root.geometry("400x400")
+    # background_image = tk.PhotoImage(file = "chest.gif")
+    background_label = tk.Label(root, bg = "tomato4")
+    background_label.place(x=0, y=0, relwidth=1, relheight=1)
+
+    # frame = tk.Frame(root)
+    # frame.place(relwidth = 1, relheight = 1)
+
+    entry = tk.Entry(root, font=("Calibri 24"))
+    entry.place(x = 50, y = 50, width = 300, height = 50)
+
+    # add a button
+    button = tk.Button(root,text="Calculate Ratio", font=1, command=lambda: calculate_Exalt_Ratio(entry.get(), label))
+    button.place(x = 130, y = 100, height = 50)
+
+    label = tk.Label(root,font = 200, bg="white")
+    #x and y to move screen, width and height to adjust box width and height.
+    label.place(x = 0, y = 200, width = 400, height = 200)
+
+
+
+    tk.Button(root, text="Quit", command = root.destroy).place(x=175, y=375)
+
+
+
+def calculate_Exalt_Ratio(entry, label):
+    exaltedOrbPrice = currency.get("Exalted Orb")
+    exaltedOrbRatio = float(exaltedOrbPrice) * float(entry)
+    chaosOrbs = "Chaos Orbs"
+    label['text'] = str(exaltedOrbRatio) + chaosOrbs
+
+#Divination Cards search window
+def main_window10():
+    root = tk.Toplevel()
+    root.title("Fossil Search")
+    root.geometry("400x400")
+    # background_image = tk.PhotoImage(file = "chest.gif")
+    background_label = tk.Label(root, bg = "tomato4")
+    background_label.place(x=0, y=0, relwidth=1, relheight=1)
+    # frame = tk.Frame(root)
+    # frame.place(relwidth = 1, relheight = 1)
+    entry = tk.Entry(root, font=("Calibri 24"))
+    entry.place(x = 50, y = 50, width = 300, height = 50)
+    #user input testing
+    reg = root.register(validateInput)
+    entry.config(validate="key",validatecommand=(reg, '%P'))
+
+    # add a button
+    button = tk.Button(root,text="Get Item Value", font=1, command=lambda: show_Div_Cards_Value(entry.get(), label))
+    button.place(x = 1, y = 100, height = 50)
+
+    button2 = tk.Button(root, text="Top Div Card", font=1, command=lambda: top_Div_Card_Item(entry.get(), label))
+    button2.place(x=150, y=100, height = 50)
+
+
+    label = tk.Label(root,font = 200, bg="white")
+    #x and y to move screen, width and height to adjust box width and height.
+    label.place(x = 0, y = 200, width = 400, height = 200)
+    label['text'] = "Suggested Search Items:\n Exalted Orb\n Mirror of Kalandra"
+
+
+
+    tk.Button(root, text="Quit", command = root.destroy).place(x=175, y=375)
+
 #Unique Acessories search window
 def main_window9():
     root = tk.Toplevel()
@@ -340,6 +408,7 @@ incubatorUrl = 'https://poe.ninja/api/data/itemoverview?league=Delirium&type=Inc
 scarabUrl = 'https://poe.ninja/api/data/itemoverview?league=Delirium&type=Scarab&language=en'
 fossilUrl = 'https://poe.ninja/api/data/itemoverview?league=Delirium&type=Fossil&language=en'
 uniqueAccessoriesUrl = 'https://poe.ninja/api/data/itemoverview?league=Delirium&type=UniqueAccessory&language=en'
+divCardsUrl = 'https://poe.ninja/api/data/itemoverview?league=Delirium&type=DivinationCard&language=en'
 
 fossilData = requests.get(fossilUrl)
 scarabData = requests.get(scarabUrl)
@@ -348,6 +417,7 @@ uniqueJewelData = requests.get(uniqueJewelsUrl)
 weaponData = requests.get(weaponUrl)
 uniqueArmourData = requests.get(uniqueArmourDataUrl)
 uniqueAccessoriesData = requests.get(uniqueAccessoriesUrl)
+divCardsData = requests.get(divCardsUrl)
 data = requests.get(url)
 
 fossilDataJson = fossilData.json()
@@ -358,6 +428,7 @@ weaponJson = weaponData.json()
 uniqueArmourDataJson = uniqueArmourData.json()
 uniqueJewelsDataJson = uniqueJewelData.json()
 uniqueAccessoriesDataJson = uniqueAccessoriesData.json()
+divCardsDataJson = divCardsData.json()
 
 
 print(type(datajson))
@@ -371,6 +442,11 @@ incubatorDic = {}
 scarabPriceDic = {}
 fossilPriceDic = {}
 uniqueAccessoriesPriceDic = {}
+divCardsPriceDic = {}
+
+for val in divCardsDataJson['lines']:
+    if val['count'] > 1:
+        divCardsPriceDic[val['name']] = val['chaosValue']
 
 for val in uniqueAccessoriesDataJson['lines']:
     if val['count'] > 1:
@@ -459,6 +535,11 @@ def top_Unique_Accessories_Item(entry, label):
     topCurrencyItem = max(uniqueAccessoriesPriceDic, key=uniqueAccessoriesPriceDic.get)
     label['text'] = max(uniqueAccessoriesPriceDic.items(), key = operator.itemgetter(1))[0] + " " + str(round(uniqueAccessoriesPriceDic.get(max(uniqueAccessoriesPriceDic.items(), key = operator.itemgetter(1))[0]))) + chaosOrbs
 
+def top_Div_Card_Item(entry, label):
+    chaosOrbs = ' ChaosOrbs'
+    topCurrencyItem = max(divCardsPriceDic, key=divCardsPriceDic.get)
+    label['text'] = max(divCardsPriceDic.items(), key = operator.itemgetter(1))[0] + " " + str(round(divCardsPriceDic.get(max(divCardsPriceDic.items(), key = operator.itemgetter(1))[0]))) + chaosOrbs
+
 
 
 def show_Unique_Armour_Value(entry, label):
@@ -493,6 +574,10 @@ def show_unique_acessories_Value(entry, label):
     chaosOrbs = ' ChaosOrbs'
     label['text'] = str(uniqueAccessoriesPriceDic.get(entry)) + chaosOrbs
 
+def show_Div_Cards_Value(entry, label):
+    chaosOrbs = ' ChaosOrbs'
+    label['text'] = str(divCardsPriceDic.get(entry)) + chaosOrbs
+
 
 root = tk.Tk()
 background_image = tk.PhotoImage(file= "chest.gif")
@@ -506,26 +591,38 @@ weaponButton = tk.Button(root, text="Weapons Search", command=main_window2)
 armourButton = tk.Button(root, text="Unique Armour Search (1-4 Links)", command=main_window3)
 sixLinkedArmour = tk.Button(root, text="Six Linked Armour Search", command=main_window4)
 uniqueJewels = tk.Button(root, text="uniqueJewels", command=main_window5)
-incubatorButton = tk.Button(root, text = "Incubators", command = main_window6)
-scarabButton = tk.Button(root, text = "Scarabs", command = main_window7)
-fossilButton = tk.Button(root, text = "Fossils", command = main_window8)
-UniqueAccessoriesButton = tk.Button(root, text = "Unique Accessories", command = main_window9)
+incubatorButton = tk.Button(root, text = "Incubators Search", command = main_window6)
+scarabButton = tk.Button(root, text = "Scarabs Search", command = main_window7)
+fossilButton = tk.Button(root, text = "Fossils Search", command = main_window8)
+UniqueAccessoriesButton = tk.Button(root, text = "Unique Accessories Search", command = main_window9)
+divCardButton = tk.Button(root, text = "Div Cards Search", command = main_window10)
+exaltRatioButton = tk.Button(root, text = "Exalt Ratio Convertor", command = exalt_Ratio_Window)
 aboutButton = tk.Button(root, text="About", command=aboutButtonWindow)
 
 button.pack()
-button.place(x = 1, y = 75)
+button.place(x = 40, y = 75)
 weaponButton.pack()
-weaponButton.place(x = 1, y = 120)
+weaponButton.place(x = 40, y = 120)
 armourButton.pack()
-armourButton.place(x = 1, y = 160)
+armourButton.place(x = 7, y = 160)
 sixLinkedArmour.pack()
-sixLinkedArmour.place( x = 1, y = 200)
+sixLinkedArmour.place( x = 24, y = 200)
 uniqueJewels.pack()
-uniqueJewels.place ( x = 1, y = 245)
+uniqueJewels.place ( x = 40, y = 245)
 incubatorButton.pack()
+incubatorButton.place(x = 260, y = 75)
 scarabButton.pack()
+scarabButton.place(x = 267, y = 120)
 fossilButton.pack()
+fossilButton.place(x = 267, y = 160)
 UniqueAccessoriesButton.pack()
+UniqueAccessoriesButton.place( x = 230, y = 200)
+divCardButton.pack()
+divCardButton.place(x = 267, y = 245)
+exaltRatioButton.pack()
+exaltRatioButton.place( x = 267, y = 270)
+
+
 aboutButton.pack()
 aboutButton.place(x = 200, y = 350)
 root.geometry("400x400+350+350")
