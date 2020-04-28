@@ -16,7 +16,7 @@ def exalt_Ratio_Window():
     # frame.place(relwidth = 1, relheight = 1)
 
     entry = tk.Entry(root, font=("Calibri 24"))
-    entry.place(x = 50, y = 50, width = 300, height = 50)
+    entry.place(x = 25, y = 50, width = 350, height = 50)
 
     # add a button
     button = tk.Button(root,text="Calculate Ratio", font=1, command=lambda: calculate_Exalt_Ratio(entry.get(), label))
@@ -35,8 +35,8 @@ def exalt_Ratio_Window():
 def calculate_Exalt_Ratio(entry, label):
     exaltedOrbPrice = currency.get("Exalted Orb")
     exaltedOrbRatio = float(exaltedOrbPrice) * float(entry)
-    chaosOrbs = "Chaos Orbs"
-    label['text'] = str(exaltedOrbRatio) + chaosOrbs
+    chaosOrbs = " Chaos Orbs"
+    label['text'] = str(round(exaltedOrbRatio)) + chaosOrbs
 
 #Divination Cards search window
 def main_window10():
@@ -49,17 +49,17 @@ def main_window10():
     # frame = tk.Frame(root)
     # frame.place(relwidth = 1, relheight = 1)
     entry = tk.Entry(root, font=("Calibri 24"))
-    entry.place(x = 50, y = 50, width = 300, height = 50)
+    entry.place(x = 25, y = 50, width = 350, height = 50)
     #user input testing
     reg = root.register(validateInput)
     entry.config(validate="key",validatecommand=(reg, '%P'))
 
     # add a button
     button = tk.Button(root,text="Get Item Value", font=1, command=lambda: show_Div_Cards_Value(entry.get(), label))
-    button.place(x = 1, y = 100, height = 50)
+    button.place(x = 25, y = 100, height = 50)
 
     button2 = tk.Button(root, text="Top Div Card", font=1, command=lambda: top_Div_Card_Item(entry.get(), label))
-    button2.place(x=150, y=100, height = 50)
+    button2.place(x=240, y=100, height = 50)
 
 
     label = tk.Label(root,font = 200, bg="white")
@@ -82,18 +82,17 @@ def main_window9():
     # frame = tk.Frame(root)
     # frame.place(relwidth = 1, relheight = 1)
     entry = tk.Entry(root, font=("Calibri 24"))
-    entry.place(x = 50, y = 50, width = 300, height = 50)
+    entry.place(x = 25, y = 50, width = 350, height = 50)
     #user input testing
     reg = root.register(validateInput)
     entry.config(validate="key",validatecommand=(reg, '%P'))
 
     # add a button
     button = tk.Button(root,text="Get Item Value", font=1, command=lambda: show_unique_acessories_Value(entry.get(), label))
-    button.place(x = 1, y = 100, height = 50)
+    button.place(x = 25, y = 100, height = 50)
 
     button2 = tk.Button(root, text="Top Acessory", font=1, command=lambda: top_Unique_Accessories_Item(entry.get(), label))
-    button2.place(x=150, y=100, height = 50)
-
+    button2.place(x=240, y=100, height = 50)
 
     label = tk.Label(root,font = 200, bg="white")
     #x and y to move screen, width and height to adjust box width and height.
@@ -116,17 +115,17 @@ def main_window8():
     # frame = tk.Frame(root)
     # frame.place(relwidth = 1, relheight = 1)
     entry = tk.Entry(root, font=("Calibri 24"))
-    entry.place(x = 50, y = 50, width = 300, height = 50)
+    entry.place(x = 25, y = 50, width = 350, height = 50)
     #user input testing
     reg = root.register(validateInput)
     entry.config(validate="key",validatecommand=(reg, '%P'))
 
     # add a button
     button = tk.Button(root,text="Get Item Value", font=1, command=lambda: show_fossilValue(entry.get(), label))
-    button.place(x = 1, y = 100, height = 50)
+    button.place(x = 25, y = 100, height = 50)
 
     button2 = tk.Button(root, text="Top Fossil", font=1, command=lambda: top_Fossil_Item(entry.get(), label))
-    button2.place(x=150, y=100, height = 50)
+    button2.place(x=264, y=100, height = 50)
 
 
     label = tk.Label(root,font = 200, bg="white")
@@ -153,17 +152,17 @@ def main_window7():
     # frame.place(relwidth = 1, relheight = 1)
 
     entry = tk.Entry(root, font=("Calibri 24"))
-    entry.place(x = 50, y = 50, width = 300, height = 50)
+    entry.place(x = 25, y = 50, width = 350, height = 50)
     #user input testing
     reg = root.register(validateInput)
     entry.config(validate="key",validatecommand=(reg, '%P'))
 
     # add a button
     button = tk.Button(root,text="Get Item Value", font=1, command=lambda: show_scarabValue(entry.get(), label))
-    button.place(x = 1, y = 100, height = 50)
+    button.place(x = 25, y = 100, height = 50)
 
     button2 = tk.Button(root, text="Top Scarab", font=1, command=lambda: top_Scarab_Item(entry.get(), label))
-    button2.place(x=150, y=100, height = 50)
+    button2.place(x=254, y=100, height = 50)
 
 
     label = tk.Label(root,font = 200, bg="white")
@@ -187,17 +186,17 @@ def main_window6():
     # frame.place(relwidth = 1, relheight = 1)
 
     entry = tk.Entry(root, font=("Calibri 24"))
-    entry.place(x = 50, y = 50, width = 300, height = 50)
+    entry.place(x = 25, y = 50, width = 350, height = 50)
     #user input testing
     reg = root.register(validateInput)
     entry.config(validate="key",validatecommand=(reg, '%P'))
 
     # add a button
     button = tk.Button(root,text="Get Item Value", font=1, command=lambda: show_incubatorValue(entry.get(), label))
-    button.place(x = 1, y = 100, height = 50)
+    button.place(x = 25, y = 100, height = 50)
 
     button2 = tk.Button(root, text="Top Incubator", font=1, command=lambda: top_Incubator_Item(entry.get(), label))
-    button2.place(x=150, y=100, height = 50)
+    button2.place(x=240, y=100, height = 50)
 
 
     label = tk.Label(root,font = 200, bg="white")
@@ -222,14 +221,14 @@ def main_window5():
     # frame.place(relwidth = 1, relheight = 1)
 
     entry = tk.Entry(root, font=("Calibri 24"))
-    entry.place(x = 50, y = 50, width = 300, height = 50)
+    entry.place(x = 25, y = 50, width = 350, height = 50)
 
     # add a button
     button = tk.Button(root,text="Get Item Value", font=1, command=lambda: show_uniqueJewelValue(entry.get(), label))
-    button.place(x = 1, y = 100, height = 50)
+    button.place(x = 25, y = 100, height = 50)
 
     button2 = tk.Button(root, text="Top Unique Jewel", font=1, command=lambda: top_Unique_Jewel_Item(entry.get(), label))
-    button2.place(x=150, y=100, height = 50)
+    button2.place(x=200, y=100, height = 50)
 
 
     label = tk.Label(root,font = 200, bg="white")
@@ -255,14 +254,14 @@ def main_window4():
     # frame.place(relwidth = 1, relheight = 1)
 
     entry = tk.Entry(root, font=("Calibri 24"))
-    entry.place(x = 50, y = 50, width = 300, height = 50)
+    entry.place(x = 25, y = 50, width = 350, height = 50)
 
     # add a button
     button = tk.Button(root,text="Get Item Value", font=1, command=lambda: show_Unique_Armour_Six_Lilnk_Value(entry.get(), label))
-    button.place(x = 1, y = 100, height = 50)
+    button.place(x = 25, y = 100, height = 50)
 
     button2 = tk.Button(root, text="Top 6-Link Armour", font=1, command=lambda: top_6LinkArmour_Item(entry.get(), label))
-    button2.place(x=150, y=100, height = 50)
+    button2.place(x=195, y=100, height = 50)
 
 
     label = tk.Label(root,font = 200, bg="white")
@@ -290,14 +289,14 @@ def main_window3():
     # frame.place(relwidth = 1, relheight = 1)
 
     entry = tk.Entry(root, font=("Calibri 24"))
-    entry.place(x = 50, y = 50, width = 300, height = 50)
+    entry.place(x = 25, y = 50, width = 350, height = 50)
 
     # add a button
     button = tk.Button(root,text="Get Item Value", font=1, command=lambda: show_Unique_Armour_Value(entry.get(), label))
-    button.place(x = 1, y = 100, height = 50)
+    button.place(x = 25, y = 100, height = 50)
 
     button2 = tk.Button(root, text="Top Armour", font=1, command=lambda: top_Armour_Item(entry.get(), label))
-    button2.place(x=150, y=100, height = 50)
+    button2.place(x=240, y=100, height = 50)
 
 
     label = tk.Label(root,font = 200, bg="white")
@@ -326,14 +325,14 @@ def main_window2():
     # frame.place(relwidth = 1, relheight = 1)
 
     entry = tk.Entry(root, font=("Calibri 24"))
-    entry.place(x = 50, y = 50, width = 300, height = 50)
+    entry.place(x = 25, y = 50, width = 350, height = 50)
 
     # add a button
     button = tk.Button(root,text="Get Item Value", font=1, command=lambda: show_weaponValue(entry.get(), label))
-    button.place(x = 1, y = 100, height = 50)
+    button.place(x = 25, y = 100, height = 50)
 
     button2 = tk.Button(root, text="Top Weapon", font=1, command=lambda: top_Weapon_Item(entry.get(), label))
-    button2.place(x=150, y=100, height = 50)
+    button2.place(x=240, y=100, height = 50)
 
 
     label = tk.Label(root,font = 200, bg="white")
@@ -360,17 +359,17 @@ def main_window1():
     # frame.place(relwidth = 1, relheight = 1)
 
     entry = tk.Entry(root, font=("Calibri 24"))
-    entry.place(x = 50, y = 50, width = 300, height = 50)
+    entry.place(x = 25, y = 50, width = 350, height = 50)
     #user input testing
     reg = root.register(validateInput)
     entry.config(validate="key",validatecommand=(reg, '%P'))
 
     # add a button
     button = tk.Button(root,text="Get Item Value", font=1, command=lambda: show_value(entry.get(), label))
-    button.place(x = 1, y = 100, height = 50)
+    button.place(x = 25, y = 100, height = 50)
 
     button2 = tk.Button(root, text="Top Currency", font=1, command=lambda: top_Currency_Item(entry.get(), label))
-    button2.place(x=150, y=100, height = 50)
+    button2.place(x=240, y=100, height = 50)
 
 
     label = tk.Label(root,font = 200, bg="white")
@@ -397,8 +396,6 @@ def validateInput(input):
         return False
     else:
         return True
-
-
 
 url = 'https://poe.ninja/api/data/currencyoverview?league=Delirium&type=Currency&language=en'
 weaponUrl = 'https://poe.ninja/api/data/itemoverview?league=Delirium&type=UniqueWeapon&language=en'
@@ -484,9 +481,14 @@ for val in weaponJson['lines']:
 print(uniqueJewelsDic)
 def show_value(entry, label):
     chaosOrbs = ' ChaosOrbs'
-    print("inside show value function!!", entry)
-    print(currency.get(entry))
-    label['text'] = str(currency.get(entry)) + chaosOrbs
+
+    if (entry == ""):
+        label['text'] = "Please Enter a valid Item to Search for.."
+    elif(str(currency.get(entry)) == "None"):
+        label['text'] = "Please Enter a valid Item to Search for.."
+    else:
+        label['text'] = str(round(currency.get(entry))) + chaosOrbs
+
 
 #function for displaying the highest valued item in the currency category..
 def top_Currency_Item(entry, label):
@@ -544,39 +546,90 @@ def top_Div_Card_Item(entry, label):
 
 def show_Unique_Armour_Value(entry, label):
     chaosOrbs = " ChaosOrbs"
-    label['text'] = str(uniqueArmourDic.get(entry)) + chaosOrbs
+
+    if (entry == ""):
+        label['text'] = "Please Enter a valid Item to Search for.."
+    elif(str(uniqueArmourDic.get(entry)) == "None"):
+        label['text'] = "Please Enter a valid Item to Search for.."
+    else:
+        label['text'] = str(round(uniqueArmourDic.get(entry))) + chaosOrbs
+
+
 
 def show_Unique_Armour_Six_Lilnk_Value(entry, label):
     chaosOrbs = " ChaosOrbs"
-    label['text'] = str(uniqueArmourSixLinkDic.get(entry)) + chaosOrbs
+
+    if (entry == ""):
+        label['text'] = "Please Enter a valid Item to Search for.."
+    elif(str(uniqueArmourSixLinkDic.get(entry)) == "None"):
+        label['text'] = "Please Enter a valid Item to Search for.."
+    else:
+        label['text'] = str(round(uniqueArmourSixLinkDic.get(entry))) + chaosOrbs
 
 def show_weaponValue(entry, label):
     chaosOrbs = ' ChaosOrbs'
-    label['text'] = str(weapons.get(entry)) + chaosOrbs
+    if (entry == ""):
+        label['text'] = "Please Enter a valid Item to Search for.."
+    elif(str(weapons.get(entry)) == "None"):
+        label['text'] = "Please Enter a valid Item to Search for.."
+    else:
+
+        label['text'] = str(round(weapons.get(entry))) + chaosOrbs
 
 def show_uniqueJewelValue(entry, label):
     chaosOrbs = ' ChaosOrbs'
-    label['text'] = str(uniqueJewelsDic.get(entry)) + chaosOrbs
+    if (entry == ""):
+        label['text'] = "Please Enter a valid Item to Search for.."
+    elif(str(uniqueJewelsDic.get(entry)) == "None"):
+        label['text'] = "Please Enter a valid Item to Search for.."
+    else:
+        label['text'] = str(round(uniqueJewelsDic.get(entry))) + chaosOrbs
 
 def show_incubatorValue(entry, label):
     chaosOrbs = ' ChaosOrbs'
-    label['text'] = str(incubatorDic.get(entry)) + chaosOrbs
+    if (entry == ""):
+        label['text'] = "Please Enter a valid Item to Search for.."
+    elif(str(incubatorDic.get(entry)) == "None"):
+        label['text'] = "Please Enter a valid Item to Search for.."
+    else:
+
+        label['text'] = str(round(incubatorDic.get(entry))) + chaosOrbs
 
 def show_scarabValue(entry, label):
     chaosOrbs = ' ChaosOrbs'
-    label['text'] = str(scarabPriceDic.get(entry)) + chaosOrbs
+    if (entry == ""):
+        label['text'] = "Please Enter a valid Item to Search for.."
+    elif(str(scarabPriceDic.get(entry)) == "None"):
+        label['text'] = "Please Enter a valid Item to Search for.."
+    else:
+        label['text'] = str(round(scarabPriceDic.get(entry))) + chaosOrbs
 
 def show_fossilValue(entry, label):
     chaosOrbs = ' ChaosOrbs'
-    label['text'] = str(fossilPriceDic.get(entry)) + chaosOrbs
+    if (entry == ""):
+        label['text'] = "Please Enter a valid Item to Search for.."
+    elif(str(fossilPriceDic.get(entry)) == "None"):
+        label['text'] = "Please Enter a valid Item to Search for.."
+    else:
+        label['text'] = str(round(fossilPriceDic.get(entry))) + chaosOrbs
 
 def show_unique_acessories_Value(entry, label):
     chaosOrbs = ' ChaosOrbs'
-    label['text'] = str(uniqueAccessoriesPriceDic.get(entry)) + chaosOrbs
+    if (entry == ""):
+        label['text'] = "Please Enter a valid Item to Search for.."
+    elif(str(uniqueAccessoriesPriceDic.get(entry)) == "None"):
+        label['text'] = "Please Enter a valid Item to Search for.."
+    else:
+        label['text'] = str(round(uniqueAccessoriesPriceDic.get(entry))) + chaosOrbs
 
 def show_Div_Cards_Value(entry, label):
     chaosOrbs = ' ChaosOrbs'
-    label['text'] = str(divCardsPriceDic.get(entry)) + chaosOrbs
+    if (entry == ""):
+        label['text'] = "Please Enter a valid Item to Search for.."
+    elif(str(divCardsPriceDic.get(entry)) == "None"):
+        label['text'] = "Please Enter a valid Item to Search for.."
+    else:
+        label['text'] = str(round(divCardsPriceDic.get(entry))) + chaosOrbs
 
 
 root = tk.Tk()
@@ -584,10 +637,14 @@ background_image = tk.PhotoImage(file= "chest.gif")
 background_label = tk.Label(root, image=background_image)
 background_label.place(x=0,y=0,relwidth=1,relheight=1)
 root.title("Currency Search Program")
+#Main window title label
+title = tk.Label(root,font = 200, bg="white", relief="raised")
+title['text'] = "Currency Search Program"
+title.place(x = 85, y = 10)
 
 # root.configure(bg="blue")
 button = tk.Button(root, text="currency search", command=main_window1)
-weaponButton = tk.Button(root, text="Weapons Search", command=main_window2)
+weaponButton = tk.Button(root, text="Weapons Search (Non Six-Linked)", command=main_window2)
 armourButton = tk.Button(root, text="Unique Armour Search (1-4 Links)", command=main_window3)
 sixLinkedArmour = tk.Button(root, text="Six Linked Armour Search", command=main_window4)
 uniqueJewels = tk.Button(root, text="uniqueJewels", command=main_window5)
@@ -602,7 +659,7 @@ aboutButton = tk.Button(root, text="About", command=aboutButtonWindow)
 button.pack()
 button.place(x = 40, y = 75)
 weaponButton.pack()
-weaponButton.place(x = 40, y = 120)
+weaponButton.place(x = 7, y = 120)
 armourButton.pack()
 armourButton.place(x = 7, y = 160)
 sixLinkedArmour.pack()
@@ -620,11 +677,11 @@ UniqueAccessoriesButton.place( x = 230, y = 200)
 divCardButton.pack()
 divCardButton.place(x = 267, y = 245)
 exaltRatioButton.pack()
-exaltRatioButton.place( x = 267, y = 270)
+exaltRatioButton.place( x = 140, y = 270)
 
 
 aboutButton.pack()
-aboutButton.place(x = 200, y = 350)
+aboutButton.place(x = 340, y = 370)
 root.geometry("400x400+350+350")
 root.mainloop()
 
