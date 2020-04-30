@@ -1,6 +1,7 @@
 import requests
 import tkinter as tk
 import operator
+import math
 from PIL import Image, ImageTk
 
 def exalt_Ratio_Window():
@@ -41,7 +42,7 @@ def calculate_Exalt_Ratio(entry, label):
 #Divination Cards search window
 def main_window10():
     root = tk.Toplevel()
-    root.title("Fossil Search")
+    root.title("Divination Card Search")
     root.geometry("400x400")
     # background_image = tk.PhotoImage(file = "chest.gif")
     background_label = tk.Label(root, bg = "tomato4")
@@ -65,7 +66,7 @@ def main_window10():
     label = tk.Label(root,font = 200, bg="white")
     #x and y to move screen, width and height to adjust box width and height.
     label.place(x = 0, y = 200, width = 400, height = 200)
-    label['text'] = "Suggested Search Items:\n Exalted Orb\n Mirror of Kalandra"
+    label['text'] = "Please Enter an div card to Search for.."
 
 
 
@@ -74,7 +75,7 @@ def main_window10():
 #Unique Acessories search window
 def main_window9():
     root = tk.Toplevel()
-    root.title("Fossil Search")
+    root.title("Unique Acessories Search")
     root.geometry("400x400")
     # background_image = tk.PhotoImage(file = "chest.gif")
     background_label = tk.Label(root, bg = "tomato4")
@@ -97,7 +98,7 @@ def main_window9():
     label = tk.Label(root,font = 200, bg="white")
     #x and y to move screen, width and height to adjust box width and height.
     label.place(x = 0, y = 200, width = 400, height = 200)
-    label['text'] = "Suggested Search Items:\n Exalted Orb\n Mirror of Kalandra"
+    label['text'] = "Please Enter an item to Search for.."
 
 
 
@@ -131,7 +132,7 @@ def main_window8():
     label = tk.Label(root,font = 200, bg="white")
     #x and y to move screen, width and height to adjust box width and height.
     label.place(x = 0, y = 200, width = 400, height = 200)
-    label['text'] = "Suggested Search Items:\n Exalted Orb\n Mirror of Kalandra"
+    label['text'] = "Please Enter an fossil to Search for.."
 
 
 
@@ -168,7 +169,7 @@ def main_window7():
     label = tk.Label(root,font = 200, bg="white")
     #x and y to move screen, width and height to adjust box width and height.
     label.place(x = 0, y = 200, width = 400, height = 200)
-    label['text'] = "Suggested Search Items:\n Exalted Orb\n Mirror of Kalandra"
+    label['text'] = "Please Enter an scarab to Search for.."
 
 
 
@@ -176,7 +177,7 @@ def main_window7():
 #incubator Window
 def main_window6():
     root = tk.Toplevel()
-
+    root.title("Incubator Search")
     root.geometry("400x400")
     # background_image = tk.PhotoImage(file = "chest.gif")
     background_label = tk.Label(root, bg = "tomato4")
@@ -202,7 +203,7 @@ def main_window6():
     label = tk.Label(root,font = 200, bg="white")
     #x and y to move screen, width and height to adjust box width and height.
     label.place(x = 0, y = 200, width = 400, height = 200)
-    label['text'] = "Suggested Search Items:\n Exalted Orb\n Mirror of Kalandra"
+    label['text'] = "Please Enter an incubator to Search for.."
 
 
 
@@ -210,7 +211,7 @@ def main_window6():
 #uniqueJewels window
 def main_window5():
     root = tk.Toplevel()
-
+    root.title("Unique Jewels Search")
 
     root.geometry("400x400")
     # background_image = tk.PhotoImage(file = "chest.gif")
@@ -234,6 +235,7 @@ def main_window5():
     label = tk.Label(root,font = 200, bg="white")
     #x and y to move screen, width and height to adjust box width and height.
     label.place(x = 0, y = 200, width = 400, height = 200)
+    label['text'] = "Please Enter an unique Jewel to Search for.."
 
 
 
@@ -243,7 +245,7 @@ def main_window5():
 #unique armour six link armour window
 def main_window4():
     root = tk.Toplevel()
-
+    root.title("Unique Armour (Six-Link) Search")
 
     root.geometry("400x400")
     # background_image = tk.PhotoImage(file = "chest.gif")
@@ -267,6 +269,7 @@ def main_window4():
     label = tk.Label(root,font = 200, bg="white")
     #x and y to move screen, width and height to adjust box width and height.
     label.place(x = 0, y = 200, width = 400, height = 200)
+    label['text'] = "Please Enter an item to Search for.."
     # label2 = tk.Label(root, font = 200, bg="white")
     # label2.place(x=45, y = 25)
     # label2['text'] = "Results will be value of 1-4 linked armours only"
@@ -278,7 +281,7 @@ def main_window4():
 #unique armour window
 def main_window3():
     root = tk.Toplevel()
-
+    root.title("Unique Armour (1-4) links Search")
 
     root.geometry("400x400")
     # background_image = tk.PhotoImage(file = "chest.gif")
@@ -302,6 +305,7 @@ def main_window3():
     label = tk.Label(root,font = 200, bg="white")
     #x and y to move screen, width and height to adjust box width and height.
     label.place(x = 0, y = 200, width = 400, height = 200)
+    label['text'] = "Please Enter an item to Search for.."
 
 
 
@@ -314,7 +318,7 @@ def main_window3():
 #weapon window
 def main_window2():
     root = tk.Toplevel()
-
+    root.title("Unique Weapon Search")
 
     root.geometry("400x400")
     # background_image = tk.PhotoImage(file = "chest.gif")
@@ -338,6 +342,7 @@ def main_window2():
     label = tk.Label(root,font = 200, bg="white")
     #x and y to move screen, width and height to adjust box width and height.
     label.place(x = 0, y = 200, width = 400, height = 200)
+    label['text'] = "Please Enter an item to Search for.."
 
 
 
@@ -349,7 +354,7 @@ def main_window2():
 def main_window1():
     root = tk.Toplevel()
 
-
+    root.title("Currency Search")
     root.geometry("400x400")
     # background_image = tk.PhotoImage(file = "chest.gif")
     background_label = tk.Label(root, bg = "tomato4")
@@ -375,7 +380,7 @@ def main_window1():
     label = tk.Label(root,font = 200, bg="white")
     #x and y to move screen, width and height to adjust box width and height.
     label.place(x = 0, y = 200, width = 400, height = 200)
-    label['text'] = "Suggested Search Items:\n Exalted Orb\n Mirror of Kalandra"
+    label['text'] = "Please Enter an  Item to Search for.."
 
 
 
@@ -385,10 +390,14 @@ def main_window1():
 def aboutButtonWindow():
     root = tk.Toplevel()
     root.geometry("400x400")
-    message = tk.Message(root, text="This app is made by adeel Bhatti, This app lets you serach various currency items, unique armours, and unique weapons from the game Path of Exile.")
-    message.pack()
-
-    tk.Button(root, text="Quit", command=root.destroy).place(x=175, y=375)
+    label = tk.Label(root, font=100, bg="white")
+    # x and y to move screen, width and height to adjust box width and height.
+    label.place(width=400, height=400)
+    label['text'] = "This is a Search application made \n" \
+                    " by Adeel Bhatti \n" \
+                    "When Searching for an item: \n" \
+                    "Make sure the spelling is correct\n" \
+                    "The item search is Case Sensitive"
 
 #input validation function
 def validateInput(input):
@@ -428,7 +437,7 @@ uniqueAccessoriesDataJson = uniqueAccessoriesData.json()
 divCardsDataJson = divCardsData.json()
 
 
-print(type(datajson))
+
 # print(datajson['lines'][0]['currencyTypeName'])
 weapons = {}
 currency = {}
@@ -478,44 +487,75 @@ for val in datajson['lines']:
 for val in weaponJson['lines']:
     weapons[val['name']] = val['chaosValue']
 
-print(uniqueJewelsDic)
+
 def show_value(entry, label):
-    chaosOrbs = ' ChaosOrbs'
+    chaosOrbs = ' Chaos Orbs'
+    exaltedOrb = " Exalted Orbs"
 
     if (entry == ""):
         label['text'] = "Please Enter a valid Item to Search for.."
     elif(str(currency.get(entry)) == "None"):
         label['text'] = "Please Enter a valid Item to Search for.."
     else:
-        label['text'] = str(round(currency.get(entry))) + chaosOrbs
+        if (round(currency.get(entry)) > exaltedOrbPrice):
+            newPrice = round(currency.get(entry)) / (exaltedOrbPrice)
+            label['text'] = str(round(newPrice, 1)) + exaltedOrb
+        else:
+            label['text'] = str(round(currency.get(entry))) + chaosOrbs
 
 
 #function for displaying the highest valued item in the currency category..
 def top_Currency_Item(entry, label):
     chaosOrbs = ' ChaosOrbs'
+    exaltOrb = " Exalted Orbs"
     topCurrencyItem = max(currency, key=currency.get)
-    label['text'] = max(currency.items(), key = operator.itemgetter(1))[0] + " " + str(round(currency.get(max(currency.items(), key = operator.itemgetter(1))[0]))) + chaosOrbs
+    itemExaltPrice = round(currency.get(topCurrencyItem)) / (exaltedOrbPrice)
+    if (currency.get(topCurrencyItem) >= exaltedOrbPrice):
+        label['text'] = str(topCurrencyItem + "\n") + str(round(itemExaltPrice, 1)) + exaltOrb
+    else:
+
+        label['text'] = max(currency.items(), key = operator.itemgetter(1))[0] + " " + str(round(currency.get(max(currency.items(), key = operator.itemgetter(1))[0]))) + chaosOrbs
 
 #function for displaying the highest valued item in the weapon's category.
 def top_Weapon_Item(entry, label):
     chaosOrbs = ' ChaosOrbs'
+    exaltOrb = " Exalted Orbs"
     topCurrencyItem = max(weapons, key=weapons.get)
-    label['text'] = max(weapons.items(), key = operator.itemgetter(1))[0] + " " + str(round(weapons.get(max(weapons.items(), key = operator.itemgetter(1))[0]))) + chaosOrbs
+    itemExaltPrice = round(weapons.get(topCurrencyItem)) / (exaltedOrbPrice)
+    if (weapons.get(topCurrencyItem) >= exaltedOrbPrice):
+        label['text'] = str(topCurrencyItem + "\n") + str(round(itemExaltPrice)) + exaltOrb
+    else:
+        label['text'] = max(weapons.items(), key = operator.itemgetter(1))[0] + " " + str(round(weapons.get(max(weapons.items(), key = operator.itemgetter(1))[0]))) + chaosOrbs
 
 def top_Armour_Item(entry, label):
     chaosOrbs = ' ChaosOrbs'
+    exaltOrb = " Exalted Orbs"
     topCurrencyItem = max(uniqueArmourDic, key=uniqueArmourDic.get)
-    label['text'] = max(uniqueArmourDic.items(), key = operator.itemgetter(1))[0] + " " + str(round(uniqueArmourDic.get(max(uniqueArmourDic.items(), key = operator.itemgetter(1))[0]))) + chaosOrbs
+    itemExaltPrice = round(uniqueArmourDic.get(topCurrencyItem)) / (exaltedOrbPrice)
+    if (uniqueArmourDic.get(topCurrencyItem) >= exaltedOrbPrice):
+        label['text'] = str(topCurrencyItem + "\n") + str(round(itemExaltPrice)) + exaltOrb
+    else:
+        label['text'] = max(uniqueArmourDic.items(), key = operator.itemgetter(1))[0] + " " + str(round(uniqueArmourDic.get(max(uniqueArmourDic.items(), key = operator.itemgetter(1))[0]))) + chaosOrbs
 
 def top_6LinkArmour_Item(entry, label):
     chaosOrbs = ' ChaosOrbs'
+    exaltOrb = " Exalted Orbs"
     topCurrencyItem = max(uniqueArmourSixLinkDic, key=uniqueArmourSixLinkDic.get)
-    label['text'] = max(uniqueArmourSixLinkDic.items(), key = operator.itemgetter(1))[0] + " " + str(round(uniqueArmourSixLinkDic.get(max(uniqueArmourSixLinkDic.items(), key = operator.itemgetter(1))[0]))) + chaosOrbs
+    itemExaltPrice = round(uniqueArmourSixLinkDic.get(topCurrencyItem)) / (exaltedOrbPrice)
+    if (uniqueArmourSixLinkDic.get(topCurrencyItem) >= exaltedOrbPrice):
+        label['text'] = str(topCurrencyItem + "\n") + str(round(itemExaltPrice)) + exaltOrb
+    else:
+        label['text'] = max(uniqueArmourSixLinkDic.items(), key = operator.itemgetter(1))[0] + " " + str(round(uniqueArmourSixLinkDic.get(max(uniqueArmourSixLinkDic.items(), key = operator.itemgetter(1))[0]))) + chaosOrbs
 
 def top_Unique_Jewel_Item(entry, label):
     chaosOrbs = ' ChaosOrbs'
+    exaltOrb = " Exalted Orbs"
     topCurrencyItem = max(uniqueJewelsDic, key=uniqueJewelsDic.get)
-    label['text'] = max(uniqueJewelsDic.items(), key = operator.itemgetter(1))[0] + " " + str(round(uniqueJewelsDic.get(max(uniqueJewelsDic.items(), key = operator.itemgetter(1))[0]))) + chaosOrbs
+    itemExaltPrice = round(uniqueJewelsDic.get(topCurrencyItem)) / (exaltedOrbPrice)
+    if (uniqueJewelsDic.get(topCurrencyItem) >= exaltedOrbPrice):
+        label['text'] = str(topCurrencyItem + "\n") + str(round(itemExaltPrice)) + exaltOrb
+    else:
+        label['text'] = max(uniqueJewelsDic.items(), key = operator.itemgetter(1))[0] + " " + str(round(uniqueJewelsDic.get(max(uniqueJewelsDic.items(), key = operator.itemgetter(1))[0]))) + chaosOrbs
 
 def top_Incubator_Item(entry, label):
     chaosOrbs = ' ChaosOrbs'
@@ -534,56 +574,83 @@ def top_Fossil_Item(entry, label):
 
 def top_Unique_Accessories_Item(entry, label):
     chaosOrbs = ' ChaosOrbs'
+    exaltOrb = " Exalted Orbs"
     topCurrencyItem = max(uniqueAccessoriesPriceDic, key=uniqueAccessoriesPriceDic.get)
-    label['text'] = max(uniqueAccessoriesPriceDic.items(), key = operator.itemgetter(1))[0] + " " + str(round(uniqueAccessoriesPriceDic.get(max(uniqueAccessoriesPriceDic.items(), key = operator.itemgetter(1))[0]))) + chaosOrbs
+    itemExaltPrice = round(uniqueAccessoriesPriceDic.get(topCurrencyItem)) / (exaltedOrbPrice)
+    if (uniqueAccessoriesPriceDic.get(topCurrencyItem) >= exaltedOrbPrice):
+        label['text'] = str(topCurrencyItem + "\n") + str(round(itemExaltPrice)) + exaltOrb
+    else:
+        label['text'] = max(uniqueAccessoriesPriceDic.items(), key = operator.itemgetter(1))[0] + " " + str(round(uniqueAccessoriesPriceDic.get(max(uniqueAccessoriesPriceDic.items(), key = operator.itemgetter(1))[0]))) + chaosOrbs
 
 def top_Div_Card_Item(entry, label):
     chaosOrbs = ' ChaosOrbs'
+    exaltOrb = " Exalted Orbs"
     topCurrencyItem = max(divCardsPriceDic, key=divCardsPriceDic.get)
-    label['text'] = max(divCardsPriceDic.items(), key = operator.itemgetter(1))[0] + " " + str(round(divCardsPriceDic.get(max(divCardsPriceDic.items(), key = operator.itemgetter(1))[0]))) + chaosOrbs
+    itemExaltPrice = round(divCardsPriceDic.get(topCurrencyItem)) / (exaltedOrbPrice)
+    if (divCardsPriceDic.get(topCurrencyItem) >= exaltedOrbPrice):
+        label['text'] = str(topCurrencyItem + "\n") + str(round(itemExaltPrice, 1)) + exaltOrb
+    else:
+        label['text'] = max(divCardsPriceDic.items(), key = operator.itemgetter(1))[0] + " " + str(round(divCardsPriceDic.get(max(divCardsPriceDic.items(), key = operator.itemgetter(1))[0]),)) + chaosOrbs
 
 
 
 def show_Unique_Armour_Value(entry, label):
     chaosOrbs = " ChaosOrbs"
-
+    exaltedOrb = " Exalted Orbs"
     if (entry == ""):
         label['text'] = "Please Enter a valid Item to Search for.."
     elif(str(uniqueArmourDic.get(entry)) == "None"):
         label['text'] = "Please Enter a valid Item to Search for.."
     else:
-        label['text'] = str(round(uniqueArmourDic.get(entry))) + chaosOrbs
+        if (round(uniqueArmourDic.get(entry)) > exaltedOrbPrice):
+            newPrice = round(uniqueArmourDic.get(entry)) / (exaltedOrbPrice)
+            label['text'] = str(round(newPrice, 1)) + exaltedOrb
+        else:
+            label['text'] = str(round(uniqueArmourDic.get(entry))) + chaosOrbs
 
 
 
 def show_Unique_Armour_Six_Lilnk_Value(entry, label):
     chaosOrbs = " ChaosOrbs"
-
+    exaltedOrb = " Exalted Orbs"
     if (entry == ""):
         label['text'] = "Please Enter a valid Item to Search for.."
     elif(str(uniqueArmourSixLinkDic.get(entry)) == "None"):
         label['text'] = "Please Enter a valid Item to Search for.."
     else:
-        label['text'] = str(round(uniqueArmourSixLinkDic.get(entry))) + chaosOrbs
+        if (round(uniqueArmourSixLinkDic.get(entry)) > exaltedOrbPrice):
+            newPrice = round(uniqueArmourSixLinkDic.get(entry)) / (exaltedOrbPrice)
+            label['text'] = str(round(newPrice, 1)) + exaltedOrb
+        else:
+            label['text'] = str(round(uniqueArmourSixLinkDic.get(entry), 1)) + chaosOrbs
 
 def show_weaponValue(entry, label):
     chaosOrbs = ' ChaosOrbs'
+    exaltedOrb = " Exalted Orbs"
     if (entry == ""):
         label['text'] = "Please Enter a valid Item to Search for.."
     elif(str(weapons.get(entry)) == "None"):
         label['text'] = "Please Enter a valid Item to Search for.."
     else:
-
-        label['text'] = str(round(weapons.get(entry))) + chaosOrbs
+        if (round(weapons.get(entry)) > exaltedOrbPrice):
+            newPrice = round(weapons.get(entry)) / (exaltedOrbPrice)
+            label['text'] = str(round(newPrice, 1)) + exaltedOrb
+        else:
+            label['text'] = str(round(weapons.get(entry))) + chaosOrbs
 
 def show_uniqueJewelValue(entry, label):
     chaosOrbs = ' ChaosOrbs'
+    exaltedOrb = " Exalted Orbs"
     if (entry == ""):
         label['text'] = "Please Enter a valid Item to Search for.."
     elif(str(uniqueJewelsDic.get(entry)) == "None"):
         label['text'] = "Please Enter a valid Item to Search for.."
     else:
-        label['text'] = str(round(uniqueJewelsDic.get(entry))) + chaosOrbs
+        if (round(uniqueJewelsDic.get(entry)) >= exaltedOrbPrice):
+            newPrice = round(uniqueJewelsDic.get(entry)) / (exaltedOrbPrice)
+            label['text'] = str(round(newPrice, 1)) + exaltedOrb
+        else:
+            label['text'] = str(round(uniqueJewelsDic.get(entry))) + chaosOrbs
 
 def show_incubatorValue(entry, label):
     chaosOrbs = ' ChaosOrbs'
@@ -615,23 +682,36 @@ def show_fossilValue(entry, label):
 
 def show_unique_acessories_Value(entry, label):
     chaosOrbs = ' ChaosOrbs'
+    exaltedOrb = " Exalted Orbs"
     if (entry == ""):
         label['text'] = "Please Enter a valid Item to Search for.."
     elif(str(uniqueAccessoriesPriceDic.get(entry)) == "None"):
         label['text'] = "Please Enter a valid Item to Search for.."
     else:
-        label['text'] = str(round(uniqueAccessoriesPriceDic.get(entry))) + chaosOrbs
+        if (round(uniqueAccessoriesPriceDic.get(entry)) >= exaltedOrbPrice):
+            newPrice = round(uniqueAccessoriesPriceDic.get(entry)) / (exaltedOrbPrice)
+            label['text'] = str(round(newPrice, 1)) + exaltedOrb
+        else:
+            label['text'] = str(round(uniqueAccessoriesPriceDic.get(entry))) + chaosOrbs
 
 def show_Div_Cards_Value(entry, label):
     chaosOrbs = ' ChaosOrbs'
+    exaltedOrb = " Exalted Orbs"
     if (entry == ""):
         label['text'] = "Please Enter a valid Item to Search for.."
     elif(str(divCardsPriceDic.get(entry)) == "None"):
         label['text'] = "Please Enter a valid Item to Search for.."
     else:
-        label['text'] = str(round(divCardsPriceDic.get(entry))) + chaosOrbs
+        if (round(divCardsPriceDic.get(entry)) >= exaltedOrbPrice):
+            newPrice = round(divCardsPriceDic.get(entry)) / (exaltedOrbPrice)
+            label['text'] = str(round(newPrice, 1)) + exaltedOrb
+        else:
+            label['text'] = str(round(divCardsPriceDic.get(entry))) + chaosOrbs
 
 
+
+exaltedOrbPrice = currency.get("Exalted Orb")
+print(round(exaltedOrbPrice))
 root = tk.Tk()
 background_image = tk.PhotoImage(file= "chest.gif")
 background_label = tk.Label(root, image=background_image)
@@ -678,6 +758,7 @@ divCardButton.pack()
 divCardButton.place(x = 267, y = 245)
 exaltRatioButton.pack()
 exaltRatioButton.place( x = 140, y = 270)
+tk.Button(root, text="Quit", command = root.destroy).place(x=175, y=370)
 
 
 aboutButton.pack()
