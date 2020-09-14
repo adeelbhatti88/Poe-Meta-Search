@@ -1,8 +1,7 @@
 import requests
 import tkinter as tk
 import operator
-import math
-from PIL import Image, ImageTk
+
 
 def exalt_Ratio_Window():
     root = tk.Toplevel()
@@ -406,15 +405,15 @@ def validateInput(input):
     else:
         return True
 
-url = 'https://poe.ninja/api/data/currencyoverview?league=Delirium&type=Currency&language=en'
-weaponUrl = 'https://poe.ninja/api/data/itemoverview?league=Delirium&type=UniqueWeapon&language=en'
-uniqueArmourDataUrl = "https://poe.ninja/api/data/itemoverview?league=Delirium&type=UniqueArmour&language=en"
-uniqueJewelsUrl = 'https://poe.ninja/api/data/itemoverview?league=Delirium&type=UniqueJewel&language=en'
-incubatorUrl = 'https://poe.ninja/api/data/itemoverview?league=Delirium&type=Incubator&language=en'
-scarabUrl = 'https://poe.ninja/api/data/itemoverview?league=Delirium&type=Scarab&language=en'
-fossilUrl = 'https://poe.ninja/api/data/itemoverview?league=Delirium&type=Fossil&language=en'
-uniqueAccessoriesUrl = 'https://poe.ninja/api/data/itemoverview?league=Delirium&type=UniqueAccessory&language=en'
-divCardsUrl = 'https://poe.ninja/api/data/itemoverview?league=Delirium&type=DivinationCard&language=en'
+url = 'https://poe.ninja/api/data/currencyoverview?league=Harvest&type=Currency&language=en'
+weaponUrl = 'https://poe.ninja/api/data/itemoverview?league=Harvest&type=UniqueWeapon&language=en'
+uniqueArmourDataUrl = "https://poe.ninja/api/data/itemoverview?league=Harvest&type=UniqueArmour&language=en"
+uniqueJewelsUrl = 'https://poe.ninja/api/data/itemoverview?league=Harvest&type=UniqueJewel&language=en'
+incubatorUrl = 'https://poe.ninja/api/data/itemoverview?league=Harvest&type=Incubator&language=en'
+scarabUrl = 'https://poe.ninja/api/data/itemoverview?league=Harvest&type=Scarab&language=en'
+fossilUrl = 'https://poe.ninja/api/data/itemoverview?league=Harvest&type=Fossil&language=en'
+uniqueAccessoriesUrl = 'https://poe.ninja/api/data/itemoverview?league=Harvest&type=UniqueAccessory&language=en'
+divCardsUrl = 'https://poe.ninja/api/data/itemoverview?league=Harvest&type=DivinationCard&language=en'
 
 fossilData = requests.get(fossilUrl)
 scarabData = requests.get(scarabUrl)
@@ -511,7 +510,7 @@ def top_Currency_Item(entry, label):
     topCurrencyItem = max(currency, key=currency.get)
     itemExaltPrice = round(currency.get(topCurrencyItem)) / (exaltedOrbPrice)
     if (currency.get(topCurrencyItem) >= exaltedOrbPrice):
-        label['text'] = str(topCurrencyItem + "\n") + str(round(itemExaltPrice, 1)) + exaltOrb
+        label['text'] = str(topCurrencyItem + "\n") + str(round(itemExaltPrice, 2)) + exaltOrb
     else:
 
         label['text'] = max(currency.items(), key = operator.itemgetter(1))[0] + " " + str(round(currency.get(max(currency.items(), key = operator.itemgetter(1))[0]))) + chaosOrbs
@@ -711,16 +710,16 @@ def show_Div_Cards_Value(entry, label):
 
 
 exaltedOrbPrice = currency.get("Exalted Orb")
-print(round(exaltedOrbPrice))
+
 root = tk.Tk()
 background_image = tk.PhotoImage(file= "chest.gif")
 background_label = tk.Label(root, image=background_image)
 background_label.place(x=0,y=0,relwidth=1,relheight=1)
-root.title("Currency Search Program")
+root.title("POE Meta Pricer")
 #Main window title label
 title = tk.Label(root,font = 200, bg="white", relief="raised")
-title['text'] = "Currency Search Program"
-title.place(x = 85, y = 10)
+title['text'] = "POE Meta Pricer"
+title.place(x = 145, y = 20)
 
 # root.configure(bg="blue")
 button = tk.Button(root, text="currency search", command=main_window1)
