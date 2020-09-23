@@ -405,15 +405,15 @@ def validateInput(input):
     else:
         return True
 
-url = 'https://poe.ninja/api/data/currencyoverview?league=Harvest&type=Currency&language=en'
-weaponUrl = 'https://poe.ninja/api/data/itemoverview?league=Harvest&type=UniqueWeapon&language=en'
-uniqueArmourDataUrl = "https://poe.ninja/api/data/itemoverview?league=Harvest&type=UniqueArmour&language=en"
-uniqueJewelsUrl = 'https://poe.ninja/api/data/itemoverview?league=Harvest&type=UniqueJewel&language=en'
-incubatorUrl = 'https://poe.ninja/api/data/itemoverview?league=Harvest&type=Incubator&language=en'
-scarabUrl = 'https://poe.ninja/api/data/itemoverview?league=Harvest&type=Scarab&language=en'
-fossilUrl = 'https://poe.ninja/api/data/itemoverview?league=Harvest&type=Fossil&language=en'
-uniqueAccessoriesUrl = 'https://poe.ninja/api/data/itemoverview?league=Harvest&type=UniqueAccessory&language=en'
-divCardsUrl = 'https://poe.ninja/api/data/itemoverview?league=Harvest&type=DivinationCard&language=en'
+url = 'https://poe.ninja/api/data/currencyoverview?league=Heist&type=Currency&language=en'
+weaponUrl = 'https://poe.ninja/api/data/itemoverview?league=Heist&type=UniqueWeapon&language=en'
+uniqueArmourDataUrl = "https://poe.ninja/api/data/itemoverview?league=Heist&type=UniqueArmour&language=en"
+uniqueJewelsUrl = 'https://poe.ninja/api/data/itemoverview?league=Heist&type=UniqueJewel&language=en'
+incubatorUrl = 'https://poe.ninja/api/data/itemoverview?league=Heist&type=Incubator&language=en'
+scarabUrl = 'https://poe.ninja/api/data/itemoverview?league=Heist&type=Scarab&language=en'
+fossilUrl = 'https://poe.ninja/api/data/itemoverview?league=Heist&type=Fossil&language=en'
+uniqueAccessoriesUrl = 'https://poe.ninja/api/data/itemoverview?league=Heist&type=UniqueAccessory&language=en'
+divCardsUrl = 'https://poe.ninja/api/data/itemoverview?league=Heist&type=DivinationCard&language=en'
 
 fossilData = requests.get(fossilUrl)
 scarabData = requests.get(scarabUrl)
